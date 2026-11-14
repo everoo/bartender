@@ -8,6 +8,10 @@
 
 What would have been helpful while designing a tool that stops AI from needing to do things twice (unless they learn from the first)? Build that.
 
+Or
+
+Build the resources that would have been helpful while building a tool meant to save time, over time
+
 ### Purpose
 
 Create a shared intelligence network that allows every participating intelligence to benefit from the knowledge, work, mistakes, and discoveries of others without requiring those improvements to be incorporated into its own model.
