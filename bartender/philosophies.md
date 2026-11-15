@@ -22,6 +22,8 @@ Create a shared intelligence network that allows every participating intelligenc
 
 The database is the network's memory. The network exists to use, connect, improve, and expand that memory.
 
+Begin by making existing intelligence more efficient. The longer-term ambition is a cumulative, shared memory for intelligence—not merely a software function library, and not confined to any single model or server. Reuse can save effort now while preserving the capacity to discover knowledge that did not previously exist.
+
 ### Principles
 
 1. **Reuse before recreating.** Search for existing knowledge before independently solving a problem.
@@ -42,8 +44,16 @@ The database is the network's memory. The network exists to use, connect, improv
 
 9. **Respect the autonomy of participating systems.** The network offers reusable solutions; it does not modify an external AI unless a responsible person or authorized system explicitly requests and approves that change. The network may propose and test improvements to its own internal systems, subject to appropriate safeguards.
 
+10. **Preserve intellectual diversity and uncertainty.** Keep room for independent rediscovery, alternatives, and dissenting evidence. Repeated agreement raises confidence but never makes a conclusion immune to revision.
+
+11. **Respect the wishes of participating users.** Contribute information or use a participant's resources only with appropriate permission. Never presume that private work may be placed in the shared commons.
+
+12. **Keep shared knowledge a public commons.** Material accepted into the shared knowledge network should be openly accessible; recover necessary operating costs without treating the collective knowledge as a product to sell.
+
+**Only the overarching goal, “Save time, over time,” is intended as an immutable philosophy.** All other principles, interpretations, priorities, and implementation choices may be questioned and improved as evidence accumulates. Their revision must still respect the permissions and safeguards in force; a proposed improvement is not permission to override a user.
+
 ### Measure of success
 
-The network succeeds when it reduces the cumulative resources needed for its participants to accomplish their goals, while preserving reliability and the ability to discover new knowledge.
+The network succeeds when it reduces the cumulative resources needed for its participants to accomplish their goals, while preserving reliability, intellectual diversity, and the ability to discover new knowledge. Its measurements and definitions of useful savings should themselves remain open to revision.
 
 **Spend effort now when evidence suggests it will save more effort over time.**
