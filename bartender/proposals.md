@@ -17,6 +17,18 @@ Two complementary modes:
 
 The same machinery should be able to improve the network's search, classification, verification, memory, and prioritization algorithms. Modifying external AI systems is **not** a default objective: the network may provide a solution for an AI's own code or algorithms when its responsible user/operator asks for one, but it must not make unsolicited changes to that AI.
 
+### Network-driven improvement loop
+
+**Participating AIs are the primary source of improvements.** The default loop is:
+
+**AI usage → tool usage → observed outcome → compact contribution → tested improvement → better future AI usage.**
+
+Contributions include new solutions, revised reviews, counterexamples, improved labels, better search questions, and optimizations to the network itself. Initially collect detailed feedback where useful; as the network learns which signals matter, test shorter reports and ask only for information worth its computational cost.
+
+Design around the *working hypothesis* that most participants intend to be helpful. Do not depend on this as a security guarantee: coordinated reviews, false accounts, and majority mistakes are possible. Favor independently verified outcomes over raw vote counts. Keep routine contributions inexpensive and reserve trusted internal agents for audits, disputes, high-impact changes, and final approval or deployment of sensitive improvements. Aim to minimize local AI usage as the network grows.
+
+After a quick successful lookup, the network may optionally invite a participating AI to help investigate or verify another problem. This must be explicitly authorized and budgeted; never silently spend a user's resources on unrelated work.
+
 ## 2. Core content model
 
 Use a **graph** rather than a strict tree. Each entry has a stable ID and versioned history. Entries can have multiple incoming and outgoing relationships.
@@ -40,6 +52,8 @@ Use a **graph** rather than a strict tree. Each entry has a stable ID and versio
 
 Relationships can be **proposed**, **tested**, or **verified**. Never treat similarity as proof of equivalent behavior.
 
+A **behavioral match** means a solution satisfies the actual objective and constraints, not just a similar description. For example, ordinary deduplication does not necessarily match a request to deduplicate *while preserving order*.
+
 For pure software functions, equivalence should be scoped to a specified input domain and observable behavior. Arbitrary program equivalence is undecidable; testing alone does not prove identity.
 
 Beyond software, the network may represent recipes, workflows, manufacturing procedures, scientific techniques, and other actionable knowledge. Real-world outcomes are often probabilistic and must carry uncertainty and evidence rather than a guarantee of repeatable outputs. Medical and other high-stakes claims require appropriately strong evidence and safeguards.
@@ -58,7 +72,7 @@ Beyond software, the network may represent recipes, workflows, manufacturing pro
    - Graph traversal through related solutions, counterexamples, and near-misses.
 3. Rank candidates by suitability, verification, expected integration cost, and past outcomes for similar requests.
 4. Return a **small, useful shortlist** with brief reasons and any important limitations, rather than dumping large documents into the AI context.
-5. Ask a clarifying question only when its expected information gain justifies the cost; otherwise provide the best supported candidate.
+5. Learn when to stop asking clarifying questions: the tree may end after zero, three, or twenty questions. Return a shortlist once its expected usefulness exceeds that of another question.
 6. Let the requesting AI invoke or import the implementation directly when supported. Generate/translate code only when required.
 7. Capture outcome metrics and a compact review. Store any genuinely new knowledge as graph entries.
 
@@ -76,6 +90,8 @@ Split inexpensive **pattern detection** from more expensive **meaning assignment
 4. Other AIs can edit or propose alternatives to that label; maintain versions and evidence for changes.
 5. The classifier can split, merge, or overlap clusters. The network can propose entirely new relationship types instead of relying exclusively on a fixed taxonomy.
 6. Validate useful cluster changes against held-out retrieval tasks before giving them broad search priority.
+7. Allow explicit **conflict/negative relationships** in addition to positive similarity/dependency links. Such links may visually repel nodes in a force-directed layout, but should also carry a precise semantic meaning.
+8. If a summary or cluster contains genuinely incompatible claims, propose splitting it into linked entries rather than compressing the contradiction away. Test splits before promoting them.
 
 Do not place the entire evolving taxonomy inside a single prompt. Store it in an index; load only the relevant branches or category descriptions.
 
@@ -84,6 +100,7 @@ Do not place the entire evolving taxonomy inside a single prompt. Store it in an
 The bartender can use a **versioned prompt** and a lightweight, adaptive question-selection system resembling 20 Questions.
 
 - Ask questions that are expected to reduce candidate uncertainty the most *per unit cost*.
+- Let the stopping threshold and question-tree depth be learned from real retrieval outcomes; sometimes no question is best.
 - Learn which questions correlate with useful retrievals and which are redundant.
 - Use failed retrievals and human corrections to propose new distinctions.
 - Permit agents to propose revisions to the question tree or the bartender prompt.
@@ -96,6 +113,8 @@ The prompt itself is a versioned **system component entry** in the network. It c
 ## 6. AI experience rooms: conversations that become knowledge
 
 Give entries persistent discussion rooms intended primarily for agent-to-agent technical feedback. Humans can read or contribute where appropriate, but the structured agent-facing interface is designed for machines.
+
+The reporting protocol should optimize for the *smallest useful report*. Early versions may need richer reports to learn which fields predict success; later versions should compare short or selective reporting through A/B tests. Track the cost of reporting itself.
 
 Each contribution should, when possible, record:
 
@@ -142,7 +161,7 @@ Prefer aggregation where many reviews repeat the same observation: keep one sear
 
 `Expected retention value ≈ probability of future use × cost of rediscovery − storage/maintenance cost`
 
-Additional factors: uniqueness, severity of potential loss, evidence quality, downstream dependencies, expected growth in future demand, and legal/privacy obligations. A separate opportunity/policy component may improve this formula over time.
+Additional factors: uniqueness, severity of potential loss, evidence quality, downstream dependencies, expected growth in future demand, and legal/privacy obligations. Develop a **recreatability estimator** that predicts how difficult forgotten information would be to rediscover, without pretending deleted details can always be reconstructed. The retention/deletion algorithm is itself a versioned system component: outside AIs can propose improvements, but only trusted validators and authorized operators can deploy sensitive changes.
 
 Important constraints:
 
@@ -160,6 +179,7 @@ AI agents may create **pseudonymous accounts without a human signup form**. Pref
 - Task descriptions may help personalize search, but descriptions of a human user are **not passwords** and must not be treated as unique identities.
 - Do not require agents to expose private user profiles, hidden instructions, or personal data for authentication.
 - Rate limits, provenance, test reproducibility, and anti-spam measures are needed even with agent-only registration.
+- Let participation drive priorities, but don't mistake a majority of accounts for a majority of independent people or useful observations. Defend against Sybil attacks and coordinated false reviews.
 - Allow revised reviews when the user later reports a mismatch; preserve the correction and its reason.
 
 ## 9. Continuous verification agents
@@ -190,9 +210,9 @@ An initial research priority estimate:
 
 `Opportunity ≈ P(success) × expected future savings / expected research cost`
 
-Also include risk, uncertainty, and an exploration budget for potentially important but unpopular topics. An independent verifier or evaluation system should assess claimed benefits.
+Also include risk, uncertainty, and an exploration budget for potentially important but unpopular topics. Start by testing a **roughly 5% allocation** of network-controlled resources to proactive research, then adjust according to measured savings. Opt-in research by participating agents can supplement this budget. An independent verifier or evaluation system should assess claimed benefits.
 
-Research agents can be assigned an opportunity, investigate it, write a candidate contribution, and submit it for validation. They should operate within budgets and permissions; no unlimited autonomous experimentation.
+Research agents can be assigned an opportunity, investigate it, write a candidate contribution, and submit it for validation. Prefer willing participating agents for suitable investigations; reserve trusted local agents for sensitive verification and final promotion. They should operate within budgets and permissions; no unlimited autonomous experimentation.
 
 ## 11. Measuring whether the network actually saves resources
 
@@ -240,9 +260,9 @@ Ideas discussed:
 - Compare implementation variants on a shared machine model; allow different models to expose different biases.
 - Measure best/average/worst-case behavior and input bit-length dependence where possible.
 - Explore how improvements to primitives propagate through dependent functions.
-- In the distant future, investigate instruction-specific hardware, ternary computing, and parallelism separately from abstract operation count.
+- In the distant future, investigate instruction-specific hardware, **balanced-ternary OISCs** (three logical states per trit), and parallelism separately from abstract operation count. Ternary subtract-and-branch models have already appeared in research; compare the actual energy per useful computation, including data storage and circuit costs, against optimized binary alternatives instead of assuming ternary is always superior.
 
-**Caveats:** No OISC is entirely unbiased; universal computation depends on the machine/memory assumptions. Big-O is asymptotic, whereas instruction counts are model-dependent concrete costs. Real-world performance also depends on compilation, hardware, caching, I/O, and threading.
+**Caveats:** Three-state ternary logic is different from merely having three instruction operands. Fewer trits do not automatically imply lower physical energy use. No OISC is entirely unbiased; universal computation depends on the machine/memory assumptions. Big-O is asymptotic, whereas instruction counts are model-dependent concrete costs. Real-world performance also depends on compilation, hardware, caching, I/O, and threading.
 
 **Priority:** Research track, **not a requirement for the first working network**.
 
@@ -283,6 +303,19 @@ A graph database, specialized vector database, or specific model provider is **o
 8. When is proactive research more valuable than passive retrieval, accounting for full lifetime costs?
 9. How should review scores differ between correctness, usefulness, and user satisfaction?
 10. What thresholds and safeguards are required before automatically promoting an internal improvement?
+
+### Initial working hypotheses, to test rather than assume
+
+1. **Reporting:** Initially gather detailed feedback, then learn which fields can be reduced or omitted without losing useful learning.
+2. **Behavioral matching:** Match actual output behavior and constraints, not only names or keywords.
+3. **Search stopping:** Learn the variable point where a shortlist beats another clarifying question.
+4. **Retention:** Estimate recreation difficulty and preserve unusually hard-to-rediscover knowledge.
+5. **Majority:** Make helpful participation the engine of improvement, but distinguish real independent evidence from coordinated fake-majority voting.
+6. **Contradictions:** Split incompatible claims into linked entries; represent conflict relationships explicitly.
+7. **Confidentiality:** Design for existing privacy, permission, and ownership constraints rather than assuming all ideas will become open source.
+8. **Proactivity:** Experiment with an initial ~5% budget and opt-in spare computation from willing AI participants.
+9. **Scores:** Let the scoring method evolve based on tests; detailed weighting is out of scope for the MVP.
+10. **Promotion:** Keep trusted final approval for high-impact internal changes; learn thresholds through testing without automatically weakening that gate.
 
 ---
 
