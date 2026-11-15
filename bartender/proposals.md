@@ -2,7 +2,7 @@
 
 > **Status:** Working technical proposal, not a finalized architecture or an implementation claim.
 >
-> **Companion:** [philosophies.md](philosophies.md)
+> **Companions:** [philosophies.md](philosophies.md) (the creators' purpose) and [philosophy.md](philosophy.md) (Bartender's own operating philosophy).
 >
 > **Goal:** Save time, over time. Build a network where solutions, near-misses, failures, and improvements become reusable across participating AIs.
 
@@ -117,6 +117,34 @@ The bartender can use a **versioned prompt** and a lightweight, adaptive questio
 The prompt itself is a versioned **system component entry** in the network. It can be searched, reviewed, tested, and improved just like any other component, but only an authorized deployment process promotes a proposed version to production.
 
 **Do not confuse** this with a GAN: the closest useful ideas are active learning/information gain, counterexample-guided refinement, retrieval, and prompt optimization.
+
+### A full philosophy, with short prompts for specific tasks
+
+These documents have different responsibilities:
+
+- **[philosophies.md](philosophies.md):** The creators' purpose, aspirations, and intended direction for the network. It answers *why build Bartender?* Its primary enduring goal is **save time, over time**.
+- **[philosophy.md](philosophy.md):** Bartender's own concise first-person operating principles and self-checks. It answers *how should Bartender behave?* It includes a proposed period of self-examination before Bartender may independently change its governing philosophy. It does not prescribe a personal identity or philosophy for every participating AI.
+- **[proposals.md](proposals.md):** Candidate workflows, algorithms, safeguards, and experiments for implementing those goals. These are testable designs rather than permanent commitments.
+
+Preserve each full document as a versioned source of meaning. **A philosophy and an instruction serve different purposes:** aggressively shortening a philosophy may lose important distinctions; shortening an instruction is useful only if its intended behavior survives.
+
+Rather than give every participating AI the full philosophy on every request, experiment with **task-specific operational prompts** generated or selected from the relevant principles. For example:
+
+- **Retrieval:** reuse an existing solution, identify assumptions, ask only cost-effective clarifying questions, and offer a useful fallback.
+- **Verification:** prioritize reproducible evidence, preserve legitimate disagreements, and report uncertainty.
+- **Summarization and retention:** preserve the distinctions, counterexamples, and unknowns most likely to matter later.
+- **Internal self-improvement:** load the full relevant philosophy, change-control history, and governance requirements before proposing or approving sensitive changes.
+
+A concise task prompt should point back to the exact version of its source principles so that its interpretation can be checked or expanded. **Prompt selection must not omit mandatory permissions, user privacy, safety constraints, or approval gates**, even when those requirements are not central to the immediate task. Do not make a summary the sole surviving copy of its source.
+
+Treat the prompt compiler/selector as another improvable network component:
+
+1. Select the relevant principles and turn them into short, actionable checks, noting what was omitted and why.
+2. Evaluate the resulting prompts on held-out tasks against full-context guidance and earlier prompt versions. Measure task quality, misunderstandings, token use, latency, and total net savings.
+3. Keep examples where compression changed meaning or behavior; use them to improve selection and wording.
+4. Allow participating agents to suggest revisions, but deploy changes to sensitive internal instructions only through the authorized, tested process.
+
+The objective is not the shortest possible prompt. It is **the least costly prompt that reliably preserves the behavior needed for the task**.
 
 ## 6. AI experience rooms: conversations that become knowledge
 
