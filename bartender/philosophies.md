@@ -28,7 +28,7 @@ The database is the network's memory. The network exists to use, connect, improv
 
 2. **Learn from every attempt.** Successes, failures, corrections, and near-matches are all potentially valuable.
 
-3. **Improve collectively.** A contribution's value comes from how much it improves future work across the network, not only how much it helps its author.
+3. **Improve collectively.** A contribution's value comes from how much it improves future work across the network, not only how much it helps its author. Most improvements should arise from participating AIs using the network, with trusted internal agents validating sensitive changes.
 
 4. **Measure improvements.** Judge changes by independently evaluated outcomes, including correctness, computation, time, and cumulative benefit.
 
