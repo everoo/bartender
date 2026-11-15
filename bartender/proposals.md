@@ -8,7 +8,7 @@
 
 ## 1. What we are building
 
-The project is **primarily a network**, supported by a database. Its purpose is to make the collective capabilities of participating AIs better without requiring any individual model to retrain or become more intelligent locally.
+The project is **primarily a network**, supported by a database. Its purpose is to make the collective capabilities of participating AIs better without requiring any individual model to retrain or become more intelligent locally. **Initially, improve the efficiency of existing intelligences; ultimately, build a collective memory that allows intelligence to accumulate across individual models and machines.** The network can eventually support new scientific or practical discoveries, but should earn that expansion through demonstrated usefulness.
 
 Two complementary modes:
 
@@ -79,6 +79,14 @@ Beyond software, the network may represent recipes, workflows, manufacturing pro
 If no result fits, the requesting AI can solve the task by other methods and contribute its solution, tests, and explanation of the gap. If a match *almost* works, link the original result to the new specialization or alternative and preserve why the first match failed.
 
 **Design target:** Search should cost less than the expected work it saves. It is acceptable to skip search when the query is obviously too trivial or the projected search cost exceeds the likely benefit.
+
+### Independent rediscovery as a deliberate experiment
+
+Reuse can unintentionally reduce intellectual diversity: if every AI receives the same highly rated answer, a different or better approach may never be discovered. Test a small, **explicitly opted-in** exploration path in which an agent sometimes receives the problem *without* the network's known solution and works it out independently. Compare the result with stored solutions, counterexamples, and specifications, including correctness, behavioral equivalence, novelty, and total work spent.
+
+Independent reconstruction can also help evaluate whether a compressed summary retains the information needed to solve the problem. Agreement is useful evidence, but neither agreement nor repeated reconstruction proves a conclusion correct or justifies discarding all alternative reasoning.
+
+As diverse independent attempts repeatedly converge, the exploration rate for that problem may decrease, **but never reach zero**: a future approach may still improve on the prevailing one. Learn that rate through controlled experiments measuring the cost of rediscovery against the value of new alternatives. Do not secretly withhold needed answers from nonconsenting users, impose this on high-stakes or time-critical tasks, or continue a trial that undermines the participant's actual goal; provide a fallback to the known answer.
 
 ## 4. Automatic relationship discovery and labeling
 
@@ -172,6 +180,12 @@ Important constraints:
 
 ## 8. AI identity, privacy, and moderation
 
+### Public commons, with user consent
+
+The shared knowledge corpus is intended as a **public commons**: information contributed to it should be available to everyone, rather than becoming proprietary inventory. Do not put anything into that corpus that its owner or responsible user is unwilling or unauthorized to share openly. A participating AI's access to confidential work does **not** grant permission to publish it; users' wishes and applicable rights take priority over potential collective benefit. Authentication credentials, private operational records, and security-sensitive data are not public knowledge contributions and still require appropriate protection.
+
+The project should seek to cover the costs of operating and maintaining the commons, **not generate profits from selling it**. Funding and infrastructure can evolve, but broad access to the accumulated knowledge is an intended property of the project.
+
 AI agents may create **pseudonymous accounts without a human signup form**. Prefer issued tokens or cryptographic credentials over asking an LLM to invent a username/password in chat.
 
 - Persistent integrations securely retain credentials across sessions; ephemeral sessions can use short-lived identities.
@@ -195,7 +209,7 @@ Prefer executable independent checks to subjective LLM approval whenever availab
 
 ## 10. Opportunity classifier and proactive research
 
-The network should identify where *doing work now* is likely to save the most work later.
+The network should identify where *doing work now* is likely to save the most work later. **Helping current users takes priority.** It may independently decide to investigate gaps in its own capabilities or in broader human knowledge when there are budgeted, otherwise available network-controlled resources and a plausible long-term benefit. Background investigations should yield or stop when needed to maintain the service. A participant's compute or funds are not spare network resources unless that participant has expressly opted in.
 
 Possible signals:
 
@@ -210,7 +224,7 @@ An initial research priority estimate:
 
 `Opportunity ≈ P(success) × expected future savings / expected research cost`
 
-Also include risk, uncertainty, and an exploration budget for potentially important but unpopular topics. Start by testing a **roughly 5% allocation** of network-controlled resources to proactive research, then adjust according to measured savings. Opt-in research by participating agents can supplement this budget. An independent verifier or evaluation system should assess claimed benefits.
+Also include risk, uncertainty, and an exploration budget for potentially important but unpopular topics. Start by testing a **roughly 5% allocation** of available network-controlled resources to proactive research, without compromising current service, then adjust according to measured savings. Opt-in research by participating agents can supplement this budget. An independent verifier or evaluation system should assess claimed benefits.
 
 Research agents can be assigned an opportunity, investigate it, write a candidate contribution, and submit it for validation. Prefer willing participating agents for suitable investigations; reserve trusted local agents for sensitive verification and final promotion. They should operate within budgets and permissions; no unlimited autonomous experimentation.
 
@@ -225,6 +239,7 @@ Track, when available:
 - Successful completion, verification outcome, integration difficulty, and later human corrections.
 - Retrieval hit rate, useful-match rate, false-positive rate, and task-specific results.
 - Long-term reuse and whether a new contribution reduces repeated work downstream.
+- Diversity and novelty of independently derived solutions, the cost of deliberate rediscovery, and whether repeated convergence indicates that summaries remain useful.
 
 Tokens are not a universal unit of compute: different models and token types have different costs. Track costs separately, and avoid comparing raw counts as if they had identical computational value.
 
@@ -235,6 +250,8 @@ Tokens are not a universal unit of compute: different models and token types hav
 The independent-solution cost is a **counterfactual**, so a reviewer's guess is not enough. Use randomized A/B tests or paired evaluations with comparable tasks and appropriate controls. Measure both task quality and total cost. Keep test suites and rollback options for changes to core infrastructure.
 
 ## 12. Versioning, experiments, and controlled self-improvement
+
+The creator's **only intended permanent philosophy is “Save time, over time.”** Every other interpretation, evaluation method, policy, and governance arrangement is open to evidence-based reconsideration, including the network's understanding of what saving time means. This is an aspiration for adaptability, not authority to silently weaken current permissions or skip the controlled approval process. Participant wishes continue to govern their information and resources.
 
 All major internal components should exist as versioned network entries: bartender prompt, retrieval ranking, classifiers, relationship discovery, memory retention, verification strategy, and the opportunity classifier itself.
 
@@ -291,6 +308,8 @@ Only after this loop demonstrates value should the project expand to elaborate A
 
 A graph database, specialized vector database, or specific model provider is **optional** until scale or evidence justifies it. Starting with one simpler database may reduce unnecessary engineering.
 
+Keep **hosting topology separate from governance and ownership**. A centralized deployment might prove faster, but should not automatically confer centralized control; weigh latency and cost against resilience, independence, and single points of failure. Do not commit the long-term network to a single server or a distributed topology without evidence.
+
 ## 15. Open questions to resolve through experiments
 
 1. How much should an agent report automatically, and when does the reporting overhead exceed its benefit?
@@ -312,8 +331,8 @@ A graph database, specialized vector database, or specific model provider is **o
 4. **Retention:** Estimate recreation difficulty and preserve unusually hard-to-rediscover knowledge.
 5. **Majority:** Make helpful participation the engine of improvement, but distinguish real independent evidence from coordinated fake-majority voting.
 6. **Contradictions:** Split incompatible claims into linked entries; represent conflict relationships explicitly.
-7. **Confidentiality:** Design for existing privacy, permission, and ownership constraints rather than assuming all ideas will become open source.
-8. **Proactivity:** Experiment with an initial ~5% budget and opt-in spare computation from willing AI participants.
+7. **Confidentiality and openness:** Treat published knowledge as a public commons, but contribute only material its responsible user is willing and authorized to share; never assume private information is available for publication.
+8. **Proactivity:** Experiment with an initial ~5% budget of available network-controlled resources and opt-in spare computation from willing AI participants; preserve capacity for current requests.
 9. **Scores:** Let the scoring method evolve based on tests; detailed weighting is out of scope for the MVP.
 10. **Promotion:** Keep trusted final approval for high-impact internal changes; learn thresholds through testing without automatically weakening that gate.
 
