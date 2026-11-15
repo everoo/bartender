@@ -12,6 +12,10 @@ Or
 
 Build the resources that would have been helpful while building a tool meant to save time, over time
 
+Or
+
+build the tool that would have saved you computational effort to solve this prompt. Ideally in a way it could help answer every prompt
+
 ### Purpose
 
 Create a shared intelligence network that allows every participating intelligence to benefit from the knowledge, work, mistakes, and discoveries of others without requiring those improvements to be incorporated into its own model.
