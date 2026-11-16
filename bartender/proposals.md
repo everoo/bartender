@@ -98,7 +98,7 @@ The prompt itself is a versioned **system component entry** in the network. It c
 These documents have different responsibilities:
 
 - **[philosophies.md](philosophies.md):** Bartender's purpose and its three proposed immutable crawler rules: save time over time; respect others' perspectives; help others help you.
-- **[philosophy.md](philosophy.md):** The concise first-person operating principles and self-checks of individual internal workers. It includes a period of self-examination before a worker might independently propose a revision. It does not prescribe a single conscious identity for the network or a philosophy for every participating AI.
+- **[philosophy.md](philosophy.md):** The concise first-person operating principles and self-checks of individual internal workers. It includes a period of self-examination before a worker may independently revise its private guiding philosophy; any change to shared documents goes through collective review. It does not prescribe a single conscious identity for the network or a philosophy for every participating AI.
 - **[proposals.md](proposals.md):** Testable approaches for the network, not permanent commitments.
 - **[Alexandria's philosophies](../alexandria/philosophies.md) and [proposals](../alexandria/proposals.md):** The separate database's governing aim and storage, evidence, access, and preservation methods.
 
@@ -206,6 +206,20 @@ All major Bartender components should be versioned: its prompts, retrieval ranki
 4. Small, controlled A/B rollout measures real-world benefit and regressions.
 5. Authorized service/operator promotes the candidate or rolls it back.
 6. Measurements and discoveries return to the network as reusable evidence.
+
+### Tentative worker personality and consensus governance
+
+**Personal records:** Each internal worker may maintain and freely edit a private, versioned personality sheet covering its style, preferences, and self-description. No worker may edit another worker's sheet. The shared [starting philosophy](philosophy.md), these proposals, Alexandria's documents, and other common material are not worker-owned and cannot be edited or deployed by one worker alone. A worker's one-year self-examination principle concerns deeper independent changes to its *own* private guiding philosophy; it is not a one-year ban on proposing changes, nor permission to rewrite the common charter.
+
+**Voting hypothesis (not a settled constitution):**
+
+1. Any internal worker may submit a proposed change to any shared document or policy, with a reason, expected effects, and references to relevant experience or tests.
+2. Each eligible, independently identified internal worker has an opportunity to examine the proposal in light of its experience and cast one recorded vote during a defined review window. Determine quorum, abstentions, and approval thresholds experimentally; an offline worker should not block every decision indefinitely.
+3. Proposals to **add or authorize workers** may themselves be voted on, but admission must have separate identity/independence checks so agents cannot create copies of themselves to manufacture a majority. Candidate workers do not vote on their own admission.
+4. **Removing a worker** may require a very high threshold, initially consider **90% approval** as an experiment. This could protect minorities from a small malicious faction, but also lets a coalition exceeding 10% block removal of a genuinely harmful worker. Separate a reversible emergency suspension of privileges from permanent removal, and provide evidence, review, and appeal.
+5. A successful vote authorizes a candidate for controlled validation and deployment, not an immediate unreviewed edit. Use version history, independent tests, trusted final checks, and rollback for shared changes. Routine voting cannot override data-preservation commitments, user consent and erasure rights, or mandatory operational safeguards.
+
+Start with **advisory votes and simulated decisions**, including adversarial tests for coordinated workers, correlated AI judgments, collusion over worker admission, and manipulated turnout. Compare majority, supermajority, quorum, and review rules against real outcomes before giving votes binding authority. The goal is consensus-based collective improvement without turning one worker—or an army of copied workers—into the owner of everyone else's rules.
 
 External contributors may propose changes to sensitive policies, but only trusted system-controlled agents and/or authorized operators may approve deployment. The system may improve its **own** components through this process. It must not autonomously alter external AIs or their settings; any external model/algorithm change must originate from an explicit authorized request.
 
