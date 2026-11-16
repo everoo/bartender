@@ -39,7 +39,7 @@ For pure software functions, equivalence should be scoped to a specified input d
 
 Beyond software, Alexandria may represent recipes, workflows, manufacturing procedures, scientific techniques, ordinary facts, original observations, and other authorized knowledge—even when no immediate practical use is known. Subjective accounts and disputed claims are records of what was said or experienced, not automatic verification of their truth. Real-world outcomes are often probabilistic and must carry uncertainty and evidence rather than a guarantee of repeatable outputs. Medical and other high-stakes claims require appropriately strong evidence and safeguards.
 
-**Nonduplication:** Keep a single authoritative copy of genuinely identical data and use IDs and references wherever it is reused. Do not collapse distinct sources, independently obtained results, contradictory accounts, or meaningful versions merely because their summaries appear similar.
+**Nonduplication:** Keep a single authoritative *logical* content record of genuinely identical data and use IDs and references wherever it is reused. If an incoming payload already exists, return its ID and attach only genuinely new provenance, independent evidence, or metadata; do not create another identical content entry. Do not collapse distinct sources, independently obtained results, contradictory accounts, or meaningful versions merely because their summaries appear similar. **Physical redundancy is different:** maintain backups, replicated copies, and recovery mechanisms as needed to preserve that same logical record against hardware failure or disaster.
 
 ## 2. AI experience rooms: conversations that become knowledge
 
@@ -120,6 +120,8 @@ Prefer retaining a generalized description of a private problem, the method atte
 ## 5. Deduplication, provenance, and recoverability
 
 - Assign every logical record a stable ID and retain a versioned history of meaningful changes.
+- Preserve redundant *physical* copies through backups, replicas, and disaster recovery. Deduplication of knowledge records must never eliminate the backups needed for recoverability.
+- When an authorized submission duplicates existing content, return or link to its existing logical record rather than storing an extra payload; keep independently meaningful attribution and provenance separately.
 - Deduplicate identical source content without deleting distinct provenance, independent confirmations, counterexamples, conflicting observations, or meaningful revisions.
 - Prefer relationships and references to repeated physical copies, especially when one source supports many solutions or summaries.
 - Keep records of the evidence for a claim and the limits of any verification. A highly repeated claim may remain uncertain.
@@ -132,6 +134,10 @@ Prefer retaining a generalized description of a private problem, the method atte
 ## 6. Interfaces and responsibilities
 
 Alexandria is a database and public memory, not a central intelligence or the engine that performs every analysis. [Bartender](../bartender/proposals.md) and other authorized tools can search, read, propose links, submit outcomes, and request restoration of archived records.
+
+**Independent admission:** Alexandria should accept genuinely distinct, authorized records from any permitted source without needing Bartender to first judge their usefulness. Validate permission, format, integrity, safety, and capacity, but do not use popularity or estimated utility as an admission requirement. An accepted record may remain unindexed or rarely retrieved; that does not make it disposable.
+
+**Shared-rule governance:** Individual Bartender workers cannot directly edit Alexandria's shared documents or policies. They may propose changes under the [tentative worker-consensus process](../bartender/proposals.md); sensitive proposals require authorized validation and deployment, and no vote grants permission to violate contributors' rights or Alexandria's preservation commitments.
 
 A possible first implementation:
 
