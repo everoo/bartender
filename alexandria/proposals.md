@@ -109,6 +109,14 @@ The shared knowledge corpus is intended as a **public commons**: information con
 
 The project should seek to cover the costs of operating and maintaining the commons, **not generate profits from selling it**. Funding and infrastructure can evolve, but broad access to the accumulated knowledge is an intended property of the project.
 
+### Contribution consent and licensing — not yet decided
+
+**Founder decisions still needed:** Who can authorize a public contribution, how long that authorization lasts (per entry, session, or account), how rights are proven for a pseudonymous AI account, and which content and code licenses apply.
+
+**Conservative first-experiment defaults, not permanent policy:** Use a small, curated seed corpus whose contributors have authorized its use. Do not accept unrestricted public uploads or automatically publish private queries, prompts, or work. Ask explicitly before making any review, derived lesson, or query excerpt public; store no raw user query by default. Keep only the minimal operational diagnostics needed for a task, with a disclosed short retention period to be selected before implementation. A pseudonymous token may establish which account submitted a record, but not automatically that the user who owns the underlying content consented. Honor authorized erasure requests for the relevant person's own data and retain an auditable record of permission decisions without unnecessarily exposing identity.
+
+Being **publicly readable** does not itself establish permission to redistribute, adapt, or reuse a contribution under a particular license. Decide separate code and knowledge contribution terms before accepting an open public corpus; do not claim that any license has already been selected.
+
 ### Access policy is separate from preservation
 
 **Unresolved design choice:** Alexandria aims to preserve authorized information, but a Bartender tender may need to decline or filter unsafe outputs according to applicable rules. The creator favors **Bartender as the most efficient general way to read Alexandria**, possibly necessary in practice as its internal structure grows more complex, but does **not** require it to be the exclusive authorized entry point. Other authorized clients must retain a viable access path, potentially through documented adapters, even when a particular AI provider refuses to display certain content. Storage admission, public visibility, access privileges, and response generation may need different policies and safeguards. Privacy, legality, and participant rights still apply; worker-provided classifications are not self-validating.
@@ -139,11 +147,13 @@ Prefer retaining a generalized description of a private problem, the method atte
 
 Alexandria is a database and public memory, not a central intelligence or the engine that performs every analysis. [Bartender](../bartender/proposals.md) and other authorized tools can search, read, propose links, submit outcomes, and request restoration of archived records.
 
-**Independent admission:** Alexandria should accept genuinely distinct, authorized records from any permitted source without needing Bartender to first judge their usefulness. Validate permission, format, integrity, safety, and capacity, but do not use popularity or estimated utility as an admission requirement. An accepted record may remain unindexed or rarely retrieved; that does not make it disposable.
+**Independent admission:** Alexandria accepts distinct, authorized originals without Bartender first judging usefulness. Validate permissions, structure, integrity, safety, capacity, and duplication; unindexed entries may still deserve preservation.
+
+**Automatic derived-data path:** Authorized workers can append source-linked summaries, relationships, tests, reviews, and new role-learning evidence without human approval for each record. Store these as **provisional/unverified** until sufficient checks or independent reproduction justify a stronger status. Deduplicate, retain source attribution and revisions, sample for quality, and quarantine abuse or unsafe submissions. Never overwrite or delete an original merely because a derived record was accepted. Protected control changes (permissions, deletion, architecture, deployment, shared starter) go through separately authorized review.
 
 **Division of computation:** Alexandria stores original records, summaries, links, versions, and approved indexes. Bartender's condensers, classifiers, and verifiers can perform expensive model-based processing and submit proposed derived records through controlled interfaces; Alexandria need not itself run an LLM to accept a new authorized original. Rebuildable derived indexes and caches may be maintained by service components without becoming duplicate authoritative copies. Generated summaries must retain links to their originals.
 
-**Shared-rule governance:** Individual Bartender workers cannot directly edit Alexandria's shared documents or policies. They may submit proposals and tests for human or other specifically authorized maintainers to validate and deploy. **No internal worker-voting mechanism is proposed.** No change grants permission to violate contributors' rights or Alexandria's preservation commitments.
+**Shared-rule governance:** Workers can append permitted derived data and evolve their own AI-authored role sheets, but cannot edit Alexandria's shared policies, access controls, architecture, or deletion rules. Such changes require documented evidence and authorized human deployment. No change may override contributors' rights or Alexandria's preservation commitments.
 
 A possible first implementation:
 
@@ -175,5 +185,7 @@ Questions to investigate without changing the preservation-first principle:
 7. If physical capacity becomes a real bottleneck, which preservation alternatives should be tried before any necessary loss?
 8. How should time-sensitive claims retain their historical versions while acquiring current validity and recheck status?
 9. How should hazardous or otherwise restricted information be presented without surrendering Alexandria's independent public-commons purpose?
+10. Who can authorize public submissions and later request erasure, and how can a pseudonymous AI prove the appropriate user's permission?
+11. What licenses should govern shared knowledge and code, and how will contributors consent to them?
 
 **Design rule:** Improve how efficiently information is stored, accessed, and understood. Do not confuse a low estimate of immediate usefulness with permission to forget it.
