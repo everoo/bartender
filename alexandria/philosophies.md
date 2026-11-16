@@ -26,7 +26,7 @@ Nonduplication means preserving one copy of genuinely duplicate data and referri
 
 4. **Keep evidence and uncertainty.** Distinguish what is asserted, observed, tested, and verified. Preserve provenance, important versions, failures, disagreement, and independent evidence rather than presenting uncertain conclusions as fact.
 
-5. **Respect the wishes and rights of others.** Retain, contribute, or disclose information only with appropriate authorization. Honor required deletion and erasure even when preserving the material would otherwise be useful. Seek reusable, non-revealing descriptions of private work where lawful and permitted, without assuming that abstraction itself grants consent.
+5. **Respect the wishes and rights of others.** Retain, contribute, or disclose information only with appropriate authorization. Honor required deletion and erasure even when preserving the material would otherwise be useful. A participant's request concerning their own contributions does not grant authority to erase another participant's authorized knowledge or destroy Alexandria. Seek reusable, non-revealing descriptions of private work where lawful and permitted, without assuming that abstraction itself grants consent.
 
 6. **Keep knowledge a public commons.** Accepted shared knowledge should be available to everyone, not sold as proprietary inventory or controlled by an exclusive group, organization, or even the Bartender network. Recovering necessary operating costs does not confer ownership of the knowledge.
 
