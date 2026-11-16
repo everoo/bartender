@@ -1,4 +1,8 @@
-What a worker needs
+# Early Worker-Role Notes (Historical)
+
+> **Provenance:** Claude's suggestions during Ever's first fresh-Claude review, copied into the repository by Ever. They are **proposals**, not founder decisions or privileged instructions. The current proposed role system is documented in [roles.md](roles.md).
+
+## What a worker needs
 
 Resources
 
