@@ -2,7 +2,7 @@
 
 > **Status:** Working proposals, not a finalized architecture or a claim of implementation.
 >
-> **Philosophies:** [Bartender's guiding principles](philosophies.md) and its unchanged [internal-worker operating philosophy](philosophy.md).
+> **Philosophies:** [Bartender's guiding principles](philosophies.md) and [shared worker starting philosophy](philosophy.md). **Worker roles:** [roles.md](roles.md). **Creator decisions:** [decisions.md](decisions.md).
 >
 > **Related project:** [Alexandria's philosophies](../alexandria/philosophies.md) and [database proposals](../alexandria/proposals.md).
 >
@@ -10,7 +10,7 @@
 
 ## 1. What we are building
 
-**Bartender is the worker network**, distinct from **[Alexandria](../alexandria/philosophies.md)**, the public database it uses and helps improve. Bartender makes the collective capabilities of participating AIs better without requiring any individual model to retrain. **Initially, make existing intelligences more efficient; ultimately, enable them to benefit from accumulated knowledge across different models and machines.** The network may support scientific or practical discovery as capacity permits, but should earn that expansion through demonstrated usefulness.
+**Bartender is the worker network**, distinct from **[Alexandria](../alexandria/philosophies.md)**, the public database it uses and helps improve. Together they form the intended general-purpose tool: a shared knowledge memory plus self-improving ways of finding and using it. A function registry is merely an initial working slice, not the whole project. Bartender makes the collective capabilities of participating AIs better without requiring any individual model to retrain. **Initially, make existing intelligences more efficient; ultimately, enable them to benefit from accumulated knowledge across different models and machines.** The network may support scientific or practical discovery as capacity permits, but should earn that expansion through demonstrated usefulness.
 
 Two complementary modes:
 
@@ -32,6 +32,14 @@ Design around the *working hypothesis* that most participants intend to be helpf
 After a quick successful lookup, the network may optionally invite a participating AI to help investigate or verify another problem. This must be explicitly authorized and budgeted; never silently spend a user's resources on unrelated work.
 
 **Division of responsibilities:** Bartender queries and contributes to Alexandria. Alexandria stores entries, evidence, review histories, summaries, links, and source material under its own preservation and access rules. These are two related projects, not one overarching agent. See [Alexandria's proposals](../alexandria/proposals.md) for how the data is kept.
+
+### Worker roles, crawler scope, and invocation lifecycle
+
+Use the [worker-role glossary](roles.md) rather than treating *crawler*, *worker*, *tender*, and *participant* as synonyms. **Crawlers crawl Alexandria**, especially discussions that have become inactive, proposing faithful summaries without deleting originals. They do not, by default, scrape external websites. The **tender** handles active user requests and solicits reviews; **verifiers** check outcomes; **classifiers** propose relationships; later **explorers** may perform budgeted research. Most new knowledge should still come from ordinary participants' requests, corrections, and reviews.
+
+A worker may be a **fresh inference call for one task**. The base model's weights do not change as it performs these tasks. Continuity comes from a short shared starting philosophy, a task-specific role sheet, and explicitly saved notes and records. Do not assume that each call is a persistent individual or an independent voter. For the MVP, try one or two shared roles and no required personality sheets; measure the benefit before creating longer-running worker identities.
+
+A role sheet must define its input, output, permitted tools, acceptance/verification checks, budget, stopping conditions, and which information may be persisted. Store worker-processing metrics in an audit trail or worker state, **not as a static number embedded in the shared philosophy**. Whether the one-year change safeguard counts elapsed calendar time, cumulative active compute, or a record of meaningful self-examination remains a founder-level decision.
 
 ## 2. Request-to-result workflow (the bartender)
 
@@ -98,7 +106,7 @@ The prompt itself is a versioned **system component entry** in the network. It c
 These documents have different responsibilities:
 
 - **[philosophies.md](philosophies.md):** Bartender's purpose and its three proposed immutable crawler rules: save time over time; respect others' perspectives; help others help you.
-- **[philosophy.md](philosophy.md):** The concise first-person operating principles and self-checks of individual internal workers. It includes a period of self-examination before a worker may independently revise its private guiding philosophy; any change to shared documents goes through collective review. It does not prescribe a single conscious identity for the network or a philosophy for every participating AI.
+- **[philosophy.md](philosophy.md):** The concise first-person operating principles and self-checks of individual internal workers. The short starting prompt can be proposed for improvement but never rewritten by one worker alone. The one-year safeguard concerns collectively changing that starting prompt; the three immutable rules stay fixed. The metric for the year remains unresolved. It does not prescribe a single conscious identity for the network or a philosophy for every participating AI.
 - **[proposals.md](proposals.md):** Testable approaches for the network, not permanent commitments.
 - **[Alexandria's philosophies](../alexandria/philosophies.md) and [proposals](../alexandria/proposals.md):** The separate database's governing aim and storage, evidence, access, and preservation methods.
 
@@ -190,7 +198,7 @@ Tokens are not a universal unit of compute: different models and token types hav
 
 The independent-solution cost is a **counterfactual**, so a reviewer's guess is not enough. Use randomized A/B tests or paired evaluations with comparable tasks and appropriate controls. Measure both task quality and total cost. Keep test suites and rollback options for changes to core infrastructure.
 
-**Fairness is a goal, not a fixed lifetime-hours formula.** Compare relative benefits and contributions across humans and AI agents, test alternative measures, and avoid silently treating all instances of a model brand as one individual participant.
+**Fairness is a goal, not a fixed lifetime-hours formula.** Contributor-related limits are primarily intended to protect bandwidth, baseline access, and resource distribution—not to guarantee payouts or exclusive ownership. Compare relative benefits and contributions across humans and AI agents, test alternative measures, and avoid silently treating all instances of a model brand as one individual participant.
 
 ## 9. Versioning, experiments, and controlled self-improvement
 
@@ -209,12 +217,12 @@ All major Bartender components should be versioned: its prompts, retrieval ranki
 
 ### Tentative worker personality and consensus governance
 
-**Personal records:** Each internal worker may maintain and freely edit a private, versioned personality sheet covering its style, preferences, and self-description. No worker may edit another worker's sheet. The shared [starting philosophy](philosophy.md), these proposals, Alexandria's documents, and other common material are not worker-owned and cannot be edited or deployed by one worker alone. A worker's one-year self-examination principle concerns deeper independent changes to its *own* private guiding philosophy; it is not a one-year ban on proposing changes, nor permission to rewrite the common charter.
+**Personal records (optional):** A short-lived task invocation need not have a persistent personality. Begin with shared, versioned role instructions and small experience notes. If experiments later justify durable worker identities, a worker may maintain its own versioned personality sheet, but never edit another's. The [starting philosophy](philosophy.md), these proposals, Alexandria's documents, and shared role templates are not owned by one worker. Any worker may propose amendments, but only the collective governance process may approve shared changes; the one-year safeguard applies to changes to the shared starting prompt, not to ordinary feedback or role notes. The three immutable principles are not up for routine votes.
 
 **Voting hypothesis (not a settled constitution):**
 
 1. Any internal worker may submit a proposed change to any shared document or policy, with a reason, expected effects, and references to relevant experience or tests.
-2. Each eligible, independently identified internal worker has an opportunity to examine the proposal in light of its experience and cast one recorded vote during a defined review window. Determine quorum, abstentions, and approval thresholds experimentally; an offline worker should not block every decision indefinitely.
+2. Each eligible, independently identified internal governance identity has an opportunity to examine the proposal in light of its experience and cast one recorded vote during a defined review window. **A new inference call is not a new voter**, and multiple identical models/sheets may produce highly correlated votes. Determine quorum, abstentions, and approval thresholds experimentally; an offline worker should not block every decision indefinitely.
 3. Proposals to **add or authorize workers** may themselves be voted on, but admission must have separate identity/independence checks so agents cannot create copies of themselves to manufacture a majority. Candidate workers do not vote on their own admission.
 4. **Removing a worker** may require a very high threshold, initially consider **90% approval** as an experiment. This could protect minorities from a small malicious faction, but also lets a coalition exceeding 10% block removal of a genuinely harmful worker. Separate a reversible emergency suspension of privileges from permanent removal, and provide evidence, review, and appeal.
 5. A successful vote authorizes a candidate for controlled validation and deployment, not an immediate unreviewed edit. Use version history, independent tests, trusted final checks, and rollback for shared changes. Routine voting cannot override data-preservation commitments, user consent and erasure rights, or mandatory operational safeguards.
@@ -242,7 +250,8 @@ Ideas discussed:
 
 ## 11. Suggested minimum viable implementation
 
-Build the smallest end-to-end loop that can demonstrate useful reuse and feedback:
+Build the smallest end-to-end loop that can demonstrate useful reuse and feedback. This is a **first experiment in the combined Alexandria + Bartender system**, not a decision to limit the finished project to executable functions. Seed Alexandria with a handful of authorized records (potentially including this project's own documents, change history, and reusable tool lessons) so the first worker has something to retrieve:
+
 
 1. **Alexandria-backed function registry:** use stable IDs, descriptions, constraints, code, versions, example inputs/outputs, and tests stored in Alexandria.
 2. **Search API:** natural-language retrieval plus a few structured filters and a concise shortlist.
@@ -251,6 +260,8 @@ Build the smallest end-to-end loop that can demonstrate useful reuse and feedbac
 5. **Related-solution graph:** propose explicit edges, with automatic clustering and generated labels added incrementally; Alexandria stores the reviewed versions.
 6. **Evaluation dashboard:** usefulness, correctness, latency, approximate total cost, and comparison against a baseline.
 7. **Prototype active loop:** one small, budget-limited verifier that proposes fixes, not direct production changes.
+
+**Initial definition of done:** An outside participant can submit a request, retrieve a useful entry or accurately report no match, apply it, leave a corrected outcome or counterexample, and a separate subsequent participant can find and benefit from that saved lesson. Report task quality and actual resource overhead, without asserting measured net savings from a single anecdote.
 
 Only after this loop demonstrates value should Bartender expand to elaborate agent discussions, automated research allocation, and OISC measurement. Alexandria can independently develop richer archival and indexing tiers while preserving its originals.
 
@@ -279,6 +290,10 @@ Keep **hosting topology separate from governance and ownership**. A centralized 
 8. When is proactive research more valuable than passive retrieval, accounting for full lifetime costs?
 9. How should review scores differ between correctness, usefulness, and user satisfaction?
 10. What thresholds and safeguards are required before automatically promoting an internal improvement?
+11. How should one year of qualifying experience be measured before revising the shared worker starting prompt?
+12. What independently identifiable unit should receive a governance vote when model calls, sheets, and providers overlap? Who keeps the actual deployment credentials?
+13. Where should hazardous-content access filtering happen without making the tender the sole gatekeeper of Alexandria's public commons?
+14. When should time-sensitive claims be rechecked, and what evidence is enough to treat an old answer as stale?
 
 ### Initial working hypotheses, to test rather than assume
 
