@@ -6,15 +6,7 @@
 
 ### The guiding question
 
-What would have been helpful while designing a tool that stops AI from needing to do things twice (unless they learn from the first)? Build that.
-
-Or
-
-Build the resources that would have been helpful while building a tool meant to save time, over time
-
-Or
-
-Build the tool that would have saved you computational effort to solve this prompt. Ideally in a way it could help answer every prompt.
+Build the tool that would have saved you computational effort to solve this prompt. Ideally in a way it could help answer any prompt.
 
 ### Purpose
 
