@@ -111,7 +111,7 @@ The project should seek to cover the costs of operating and maintaining the comm
 
 ### Access policy is separate from preservation
 
-**Unresolved design choice:** Alexandria aims to preserve authorized information, but a Bartender tender may need to decline or filter unsafe outputs according to applicable rules. The creator raised answer-side filtering as a possibility, **not** a decision to make the tender Alexandria's exclusive reader. Other authorized clients must not lose all independent access merely because one AI provider refuses to display certain content. Storage admission, public visibility, access privileges, and response generation may need different policies and safeguards. Privacy, legality, and participant rights still apply; worker-provided classifications are not self-validating.
+**Unresolved design choice:** Alexandria aims to preserve authorized information, but a Bartender tender may need to decline or filter unsafe outputs according to applicable rules. The creator favors **Bartender as the most efficient general way to read Alexandria**, possibly necessary in practice as its internal structure grows more complex, but does **not** require it to be the exclusive authorized entry point. Other authorized clients must retain a viable access path, potentially through documented adapters, even when a particular AI provider refuses to display certain content. Storage admission, public visibility, access privileges, and response generation may need different policies and safeguards. Privacy, legality, and participant rights still apply; worker-provided classifications are not self-validating.
 
 ### Rare protection against destruction
 
@@ -143,7 +143,7 @@ Alexandria is a database and public memory, not a central intelligence or the en
 
 **Division of computation:** Alexandria stores original records, summaries, links, versions, and approved indexes. Bartender's condensers, classifiers, and verifiers can perform expensive model-based processing and submit proposed derived records through controlled interfaces; Alexandria need not itself run an LLM to accept a new authorized original. Rebuildable derived indexes and caches may be maintained by service components without becoming duplicate authoritative copies. Generated summaries must retain links to their originals.
 
-**Shared-rule governance:** Individual Bartender workers cannot directly edit Alexandria's shared documents or policies. They may propose changes under the [tentative worker-consensus process](../bartender/proposals.md); sensitive proposals require authorized validation and deployment, and no vote grants permission to violate contributors' rights or Alexandria's preservation commitments.
+**Shared-rule governance:** Individual Bartender workers cannot directly edit Alexandria's shared documents or policies. They may submit proposals and tests for human or other specifically authorized maintainers to validate and deploy. **No internal worker-voting mechanism is proposed.** No change grants permission to violate contributors' rights or Alexandria's preservation commitments.
 
 A possible first implementation:
 
