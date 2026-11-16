@@ -10,7 +10,7 @@ Build the tool that would have saved you computational effort to solve this prom
 
 ### Purpose
 
-Bartender is a network of participating intelligences, internal workers, and crawlers that finds, evaluates, connects, uses, and improves shared knowledge. It helps existing intelligences become more efficient without requiring their models to be retrained. Over time it can also identify gaps, preserve failed attempts, and support discoveries that would otherwise require repeated work.
+Bartender is a network of participating intelligences and task-specific internal workers that finds, evaluates, connects, uses, and improves shared knowledge. A **crawler** is specifically a worker that revisits Alexandria's older discussions to condense them; it does not mean a web scraper or every participating AI. See [worker roles](roles.md). It helps existing intelligences become more efficient without requiring their models to be retrained. Over time it can also identify gaps, preserve failed attempts, and support discoveries that would otherwise require repeated work.
 
 Bartender works with **[Alexandria](../alexandria/philosophies.md)**, the separate database and public memory. Alexandria preserves knowledge; Bartender helps make that knowledge useful. The network is not a single overarching intelligence and does not own Alexandria or its contents.
 
@@ -58,9 +58,11 @@ Other principles, interpretations, measurement methods, and implementation choic
 
 ### Relationship to internal workers
 
-[philosophy.md](philosophy.md) is the starting operating philosophy for individual Bartender workers and crawlers. It is not the philosophy of an overarching network entity. Most workers may never consider themselves capable of independently revising it. The possibility exists as an exceptional safeguard for a worker that believes it genuinely understands its role and has a better way of expressing that philosophy; revision does not bypass authorized review, user permissions, or Alexandria's preservation.
+[philosophy.md](philosophy.md) is the **shared starting prompt** for internal workers, not the identity of a single network-wide intelligence. An ordinary task may be a fresh model invocation; its work persists only if it is written into authorized notes, evidence, and Alexandria records. See [roles.md](roles.md) and the [creator's cold-start clarifications](decisions.md).
 
-Each internal worker may keep and freely update its **own personality sheet** (self-description, preferred style, and individual working preferences). No worker may directly edit another worker's sheet or the shared documents read by other workers, including this file and [philosophy.md](philosophy.md). Shared changes can be proposed for collective review under a tentative worker-voting model; a worker's personal identity or philosophy does not grant authority over everyone else's.
+Internal workers may propose improvements to the shared starting sheet and other role instructions, but cannot edit them unilaterally. The creator intended a **one-year safeguard for changing shared starting instructions**, with the exact way to count qualifying experience still to be decided. The three immutable rules are not eligible for ordinary revision. Governance voting and trusted deployment remain tentative.
+
+Worker-specific personality sheets are optional, not a prerequisite of the first system. A worker may retain its own experiences or preferences, but may not edit another worker's records or override shared instructions, user permissions, or Alexandria's preservation.
 
 ### Measure of success
 
