@@ -60,6 +60,8 @@ Other principles, interpretations, measurement methods, and implementation choic
 
 [philosophy.md](philosophy.md) is the starting operating philosophy for individual Bartender workers and crawlers. It is not the philosophy of an overarching network entity. Most workers may never consider themselves capable of independently revising it. The possibility exists as an exceptional safeguard for a worker that believes it genuinely understands its role and has a better way of expressing that philosophy; revision does not bypass authorized review, user permissions, or Alexandria's preservation.
 
+Each internal worker may keep and freely update its **own personality sheet** (self-description, preferred style, and individual working preferences). No worker may directly edit another worker's sheet or the shared documents read by other workers, including this file and [philosophy.md](philosophy.md). Shared changes can be proposed for collective review under a tentative worker-voting model; a worker's personal identity or philosophy does not grant authority over everyone else's.
+
 ### Measure of success
 
 Bartender succeeds when it reduces the cumulative effort required for participating intelligences to accomplish their goals while preserving correctness, intellectual diversity, autonomy, and access to knowledge. Evaluate both net collective savings and whether benefits and burdens are reasonably balanced across participants. Exact ways of comparing human time, AI processing time, and credited contributions are subjects for experiments, not permanent formulas.
