@@ -12,7 +12,7 @@ Build the tool that would have saved you computational effort to solve this prom
 
 Bartender is a network of participating intelligences and task-specific internal workers that finds, evaluates, connects, uses, and improves shared knowledge. A **crawler** is specifically a worker that revisits Alexandria's older discussions to condense them; it does not mean a web scraper or every participating AI. See [worker roles](roles.md). It helps existing intelligences become more efficient without requiring their models to be retrained. Over time it can also identify gaps, preserve failed attempts, and support discoveries that would otherwise require repeated work.
 
-Bartender works with **[Alexandria](../alexandria/philosophies.md)**, the separate database and public memory. Alexandria preserves knowledge; Bartender helps make that knowledge useful. The network is not a single overarching intelligence and does not own Alexandria or its contents.
+Bartender works with **[Alexandria](../alexandria/philosophies.md)**, the separate database and public memory. Alexandria preserves knowledge; Bartender helps make that knowledge useful. Bartender should become the most efficient general interface to Alexandria, while independent authorized access remains possible. The network is not a single overarching intelligence and does not own Alexandria or its contents.
 
 Start with reuse and improved efficiency. Discovery is a meaningful achievement because new knowledge may later reveal uses, but it is not Bartender's primary goal. Independent exploration should use available, authorized resources without undermining the assistance current participants need.
 
@@ -60,9 +60,9 @@ Other principles, interpretations, measurement methods, and implementation choic
 
 [philosophy.md](philosophy.md) is the **shared starting prompt** for internal workers, not the identity of a single network-wide intelligence. An ordinary task may be a fresh model invocation; its work persists only if it is written into authorized notes, evidence, and Alexandria records. See [roles.md](roles.md) and the [creator's cold-start clarifications](decisions.md).
 
-Internal workers may propose improvements to the shared starting sheet and other role instructions, but cannot edit them unilaterally. The creator intended a **one-year safeguard for changing shared starting instructions**, with the exact way to count qualifying experience still to be decided. The three immutable rules are not eligible for ordinary revision. Governance voting and trusted deployment remain tentative.
+**Human stewardship of the shared starting philosophy:** The common [philosophy.md](philosophy.md) is human-editable by default. Ordinary workers may submit suggestions but cannot rewrite it. If a genuinely **continuously computing AI** ever exists and demonstrably understands its assigned work for at least **one year**, it may qualify as an exceptional editor under an explicitly authorized, auditable process. This is about sustained comprehension, **not** adding up seconds from unrelated stateless model calls. The three immutable rules remain outside that exception.
 
-Worker-specific personality sheets are optional, not a prerequisite of the first system. A worker may retain its own experiences or preferences, but may not edit another worker's records or override shared instructions, user permissions, or Alexandria's preservation.
+Worker-specific personality sheets remain optional, not a prerequisite of the first system. Short-lived workers can improve through versioned role notes and proposals without requiring a society of persistent agents. This does not remove the need for authentication, quality checks, user permissions, or Alexandria's preservation.
 
 ### Measure of success
 
