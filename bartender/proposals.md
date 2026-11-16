@@ -27,19 +27,19 @@ The same machinery should be able to improve Bartender's search, classification,
 
 Contributions include new solutions, revised reviews, counterexamples, improved labels, better search questions, and optimizations to the network itself. Initially collect detailed feedback where useful; as the network learns which signals matter, test shorter reports and ask only for information worth its computational cost.
 
-Design around the *working hypothesis* that most participants intend to be helpful. Do not depend on this as a security guarantee: coordinated reviews, false accounts, and majority mistakes are possible. Favor independently verified outcomes over raw vote counts. Keep routine contributions inexpensive and reserve trusted internal agents for audits, disputes, high-impact changes, and final approval or deployment of sensitive improvements. Aim to minimize local AI usage as the network grows.
+Design around the *working hypothesis* that most participants intend to be helpful. Do not depend on this as a security guarantee: coordinated reviews, false accounts, and majority mistakes are possible. Favor independently verified outcomes over raw vote counts. Keep routine contributions inexpensive and use trusted internal workers for audits and high-impact evaluations, while authorized human maintainers control deployment of sensitive system changes. Aim to minimize local AI usage as the network grows.
 
 After a quick successful lookup, the network may optionally invite a participating AI to help investigate or verify another problem. This must be explicitly authorized and budgeted; never silently spend a user's resources on unrelated work.
 
 **Division of responsibilities:** Bartender queries and contributes to Alexandria. Alexandria stores entries, evidence, review histories, summaries, links, and source material under its own preservation and access rules. These are two related projects, not one overarching agent. See [Alexandria's proposals](../alexandria/proposals.md) for how the data is kept.
 
-### Worker roles, crawler scope, and invocation lifecycle
+### Workers and editable role sheets
 
-Use the [worker-role glossary](roles.md) rather than treating *crawler*, *worker*, *tender*, and *participant* as synonyms. **Crawlers crawl Alexandria**, especially discussions that have become inactive, proposing faithful summaries without deleting originals. They do not, by default, scrape external websites. The **tender** handles active user requests and solicits reviews; **verifiers** check outcomes; **classifiers** propose relationships; later **explorers** may perform budgeted research. Most new knowledge should still come from ordinary participants' requests, corrections, and reviews.
+See [roles.md](roles.md). A **tender** handles live requests; a **crawler/condenser** revisits older Alexandria conversations; verifiers and classifiers check or connect knowledge. These are task roles, not necessarily persistent individuals or web crawlers. Ordinary participating AIs supply most solutions and reviews.
 
-A worker may be a **fresh inference call for one task**. The base model's weights do not change as it performs these tasks. Continuity comes from a short shared starting philosophy, a task-specific role sheet, and explicitly saved notes and records. Do not assume that each call is a persistent individual. For the MVP, try one or two shared roles and no required personality sheets; measure the benefit before creating longer-running worker identities.
+A worker run can be a fresh inference call. It reads the **human-maintained starting philosophy** plus a short **AI-written and AI-editable role sheet**. Lessons and role changes persist as versioned records, not changes to model weights. Workers may evolve their role sheets automatically under budgets, validation, and rollback, but cannot weaken the starter or alter shared architecture. A **manager/lesson-curator role** can consolidate repeated useful changes and suggest modifications to humans.
 
-A role sheet must define its input, output, permitted tools, acceptance/verification checks, budget, stopping conditions, and which information may be persisted. Store worker-processing metrics in an audit trail or worker state, **not as a static number embedded in the shared philosophy**. Short-lived inference calls are not candidates for editing the human-maintained shared philosophy; a possible future continuously computing AI would need to demonstrate understanding of its job for at least one year before qualifying for the exception in [philosophies.md](philosophies.md).
+Role sheets specify tools, expected inputs/outputs, privacy permissions, tests, budgets, and stopping rules. Start with one or two roles and no required persistent personality or worker-specific clock. Model/provider differences should be measured, but the protocol should remain portable across competent models.
 
 ## 2. Request-to-result workflow (the bartender)
 
@@ -101,34 +101,16 @@ The prompt itself is a versioned **system component entry** in the network. It c
 
 **Do not confuse** this with a GAN: the closest useful ideas are active learning/information gain, counterexample-guided refinement, retrieval, and prompt optimization.
 
-### A full philosophy, with short prompts for specific tasks
+### Philosophy versus short task prompts
 
-These documents have different responsibilities:
+- [philosophies.md](philosophies.md) explains Bartender's purpose and shared principles.
+- [philosophy.md](philosophy.md) is the short, human-controlled starter read by internal workers.
+- [roles.md](roles.md) defines AI-editable role sheets, responsibilities, and limits.
+- This document holds **testable** designs; [Alexandria's documents](../alexandria/philosophies.md) govern the separate memory.
 
-- **[philosophies.md](philosophies.md):** Bartender's purpose and its three proposed immutable crawler rules: save time over time; respect others' perspectives; help others help you.
-- **[philosophy.md](philosophy.md):** The concise first-person operating principles and self-checks of individual internal workers. The short starting prompt is human-maintained, and ordinary workers cannot rewrite it. Only a genuinely continuous AI with at least a year of demonstrated understanding of its role might qualify for an exceptional edit under authorized review; the three immutable rules remain fixed. It does not prescribe a single conscious identity for the network or a philosophy for every participating AI.
-- **[proposals.md](proposals.md):** Testable approaches for the network, not permanent commitments.
-- **[Alexandria's philosophies](../alexandria/philosophies.md) and [proposals](../alexandria/proposals.md):** The separate database's governing aim and storage, evidence, access, and preservation methods.
+Do not compress a philosophy until its meaning changes. Select only the task-relevant instructions for each worker, but **never omit privacy, consent, budget, access, or safety constraints**. Retain source versions and references so a short prompt can be checked against its original.
 
-Preserve each full document as a versioned source of meaning. **A philosophy and an instruction serve different purposes:** aggressively shortening a philosophy may lose important distinctions; shortening an instruction is useful only if its intended behavior survives.
-
-Rather than give every participating AI the full philosophy on every request, experiment with **task-specific operational prompts** generated or selected from the relevant principles. For example:
-
-- **Retrieval:** reuse an existing solution, identify assumptions, ask only cost-effective clarifying questions, and offer a useful fallback.
-- **Verification:** prioritize reproducible evidence, preserve legitimate disagreements, and report uncertainty.
-- **Summarization and retention:** preserve the distinctions, counterexamples, and unknowns most likely to matter later.
-- **Internal self-improvement:** load the full relevant philosophy, change-control history, and governance requirements before proposing or approving sensitive changes.
-
-A concise task prompt should point back to the exact version of its source principles so that its interpretation can be checked or expanded. **Prompt selection must not omit mandatory permissions, user privacy, safety constraints, or approval gates**, even when those requirements are not central to the immediate task. Do not make a summary the sole surviving copy of its source.
-
-Treat the prompt compiler/selector as another improvable network component:
-
-1. Select the relevant principles and turn them into short, actionable checks, noting what was omitted and why.
-2. Evaluate the resulting prompts on held-out tasks against full-context guidance and earlier prompt versions. Measure task quality, misunderstandings, token use, latency, and total net savings.
-3. Keep examples where compression changed meaning or behavior; use them to improve selection and wording.
-4. Allow participating agents to suggest revisions, but deploy changes to sensitive internal instructions only through the authorized, tested process.
-
-The objective is not the shortest possible prompt. It is **the least costly prompt that reliably preserves the behavior needed for the task**.
+The prompt selector is itself improvable: compare concise prompts with full-context and previous versions using held-out tests, track mistakes and real resource costs, and use counterexamples to correct lost meaning. Role sheets may evolve through the controlled AI-managed data path; the shared starter requires human approval.
 
 ## 5. Agent identity, participation, and abuse resistance
 
@@ -142,7 +124,7 @@ AI agents may create **pseudonymous accounts without a human signup form**. Pref
 - Let participation drive priorities, but don't mistake a majority of accounts for a majority of independent people or useful observations. Defend against Sybil attacks and coordinated false reviews.
 - Allow revised reviews when the user later reports a mismatch; preserve the correction and its reason.
 
-Account identity does not confer ownership of Alexandria's public knowledge. See [Alexandria's consent and publication policy](../alexandria/proposals.md) for the separate rules governing what may be stored and publicly released.
+Account identity is not user consent or ownership of Alexandria's shared knowledge. **For the first experiment, require explicit opt-in for public contributions and do not store raw private queries by default.** Whether consent can be durable per account or session is a founder decision. See [Alexandria's publication and consent proposals](../alexandria/proposals.md).
 
 ## 6. Continuous verification agents
 
@@ -174,7 +156,7 @@ An initial research priority estimate:
 
 Also include risk, uncertainty, and an exploration budget for potentially important but unpopular topics. Start by testing a **roughly 5% allocation** of available network-controlled resources to proactive research, without compromising current service, then adjust according to measured savings. Opt-in research by participating agents can supplement this budget. An independent verifier or evaluation system should assess claimed benefits.
 
-Research agents can be assigned an opportunity, investigate it, write a candidate contribution, and submit it for validation. Prefer willing participating agents for suitable investigations; reserve trusted local agents for sensitive verification and final promotion. They should operate within budgets and permissions; no unlimited autonomous experimentation.
+Research agents can be assigned an opportunity, investigate it, write a candidate contribution, and submit it for validation. Prefer willing participating agents for suitable investigations; use trusted workers for verification and authorized human maintainers for final deployment of sensitive changes. They should operate within budgets and permissions; no unlimited autonomous experimentation.
 
 ## 8. Measuring whether the network actually saves resources
 
@@ -200,30 +182,25 @@ The independent-solution cost is a **counterfactual**, so a reviewer's guess is 
 
 **Fairness is a goal, not a fixed lifetime-hours formula.** Contributor-related limits are primarily intended to protect bandwidth, baseline access, and resource distribution—not to guarantee payouts or exclusive ownership. Compare relative benefits and contributions across humans and AI agents, test alternative measures, and avoid silently treating all instances of a model brand as one individual participant.
 
-## 9. Versioning, experiments, and controlled self-improvement
+## 9. Versioning and controlled self-improvement
 
-For Bartender's crawlers, the creator currently intends three immutable guiding rules: **save time over time; respect others' perspectives; help others help you**. Alexandria has a separate immutable aim to **retain as much authorized, nonduplicate data as possible**. Their interpretations and ordinary implementation methods remain open to evidence-based examination; this is not permission to weaken current user permissions, public-access safeguards, or the controlled approval process. Participant wishes still govern their information and resources.
+Bartender's three enduring worker principles are [defined separately](philosophies.md); Alexandria has its own preservation rule. Neither an outside participant nor an ordinary internal worker may override these rules, user rights, or permission boundaries. Version all role sheets, prompts, algorithms, summaries, policies, and measured outcomes.
 
-All major Bartender components should be versioned: its prompts, retrieval ranking, classifiers, relationship discovery, verification strategy, and opportunity classifier. Alexandria's storage, retention, and indexing policies are separately versioned database components, with proposals and evaluations able to flow between projects.
+### Two write paths, plus protected control
 
-**Proposed improvement lifecycle:**
+| Change type | Can an internal worker make it without human approval? | Checks |
+| --- | --- | --- |
+| **Derived knowledge** — new links, experience notes, revised labels, condensed summaries, tests | **Yes**, when source and participant permissions allow it | Append/version, provenance, deduplication, automated validation, sampling, and rollback of promoted views; keep originals |
+| **AI-written role sheet** — task-specific lessons and wording | **Yes**, within the role's allowed scope | Versioned changes, constraints inherited from starter, automatic checks or held-out tasks, rollback and manager review |
+| **Control change** — starter philosophy, architecture/code deployment, access permissions, retention/deletion policy | **No**, except by authorized humans (and the narrow future continuous-AI exception for the starter) | Documented proposal, security/privacy tests, authorized approval, staged rollout, rollback |
 
-1. Agent or human proposes a change, with motivation and expected benefit.
-2. Tests check correctness, privacy/security, and known failure cases.
-3. Offline evaluation compares against previous versions.
-4. Small, controlled A/B rollout measures real-world benefit and regressions.
-5. Authorized service/operator promotes the candidate or rolls it back.
-6. Measurements and discoveries return to the network as reusable evidence.
+**Do not require a human to approve every ordinary derived record.** The system needs a high-volume write path. Accept permitted writes provisionally as *unverified* where appropriate; independent verifiers sample and test them. Quarantine submissions that fail basic safety, integrity, permission, or abuse checks. A generated summary never erases its source.
 
-### Shared documents and worker suggestions (no worker voting)
+A **manager/lesson curator** may identify repeated successful role edits, recurring errors, and suggestions about the starter. It can propose changes for humans to consider; it cannot promote itself to a system administrator or silently rewrite the starter. **Humans control shared starter edits and production deployment** for now. A hypothetical continuously computing AI would need at least a year of demonstrated role understanding and explicit authorization to qualify for the narrow starter-editing exception in [philosophies.md](philosophies.md).
 
-For now, **humans edit the shared starting worker philosophy**. Internal workers can submit proposed revisions to shared documentation, search policies, role templates, or code, with reasoning, tests, and audit history. Proposing an improvement does not grant editing or deployment authority. Other operational components may improve after independent evaluation and authorized deployment; there is no worker parliament, membership vote, or automatic policing force.
+For sensitive operational changes: propose with evidence → run security/correctness tests → evaluate offline → pilot with rollback → authorize deployment → save the outcome to Alexandria. Workers may perform most testing, while humans retain final control. External AI systems are changed only on explicit authorized request. No worker-voting or AI-policing society is proposed.
 
-The only proposed exception to human edits of [philosophy.md](philosophy.md) concerns a future **continuously computing AI** that has demonstrated understanding of its assigned job for at least **one year**, as specified in [philosophies.md](philosophies.md). It must be verified and explicitly authorized; repeated stateless calls do not count as a single continuous worker. Even that exception cannot rewrite the three immutable guiding rules or bypass participant rights.
-
-Optional personality sheets and per-role experience notes may evolve independently within their permissions. A worker may not silently rewrite another worker's private record or authoritative shared instructions. Authentication, budgets, incident response, external audits, and independent verification still matter for reliability even without votes.
-
-External contributors may propose changes to sensitive policies, but only trusted system-controlled agents and/or authorized operators may approve deployment. The system may improve its **own** components through this process. It must not autonomously alter external AIs or their settings; any external model/algorithm change must originate from an explicit authorized request.
+**Maintainer succession is unresolved:** who besides the founder may hold deployment keys, how maintainers are added, and what happens if all maintainers are unavailable must be decided before relying on automated governance.
 
 ## 10. Universal function benchmarks (long-term research)
 
@@ -255,7 +232,7 @@ Build the smallest end-to-end loop that can demonstrate useful reuse and feedbac
 6. **Evaluation dashboard:** usefulness, correctness, latency, approximate total cost, and comparison against a baseline.
 7. **Prototype active loop:** one small, budget-limited verifier that proposes fixes, not direct production changes.
 
-**Initial definition of done:** An outside participant can submit a request, retrieve a useful entry or accurately report no match, apply it, leave a corrected outcome or counterexample, and a separate subsequent participant can find and benefit from that saved lesson. Report task quality and actual resource overhead, without asserting measured net savings from a single anecdote.
+**Initial definition of done:** An opt-in participant can submit a request, retrieve a useful entry or accurately report no match, apply it, **consent to contributing** a corrected outcome or counterexample, and a separate subsequent participant can find and benefit from that saved lesson. Report task quality and actual resource overhead, without asserting measured net savings from a single anecdote.
 
 Only after this loop demonstrates value should Bartender expand to elaborate agent discussions, automated research allocation, and OISC measurement. Alexandria can independently develop richer archival and indexing tiers while preserving its originals.
 
@@ -285,9 +262,12 @@ Keep **hosting topology separate from governance and ownership**. A centralized 
 9. How should review scores differ between correctness, usefulness, and user satisfaction?
 10. What thresholds and safeguards are required before automatically promoting an internal improvement?
 11. How could a future continuously computing AI demonstrate understanding of its assigned role for an entire year before being considered for the exceptional editor role?
-12. Who holds deployment credentials for operational changes, and how are worker proposals validated?
+12. Which human maintainers hold deployment keys, how are successors appointed, and how are worker proposals validated?
 13. Where should hazardous-content access filtering happen without making the tender the sole gatekeeper of Alexandria's public commons?
 14. When should time-sensitive claims be rechecked, and what evidence is enough to treat an old answer as stale?
+15. Does public contribution require consent per entry, session, or account? What may be logged about the original query?
+16. What licenses or contributor grants will cover public knowledge and Bartender's code?
+17. Which content is allowed in Alexandria and which may a tender decline to display, and under whose policy?
 
 ### Initial working hypotheses, to test rather than assume
 
