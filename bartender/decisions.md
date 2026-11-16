@@ -4,7 +4,16 @@
 >
 > **Purpose:** Preserve answers that cannot be safely inferred by a new AI, including uncertainties left deliberately unresolved. The detailed implementations remain in [Bartender proposals](proposals.md), [Alexandria proposals](../alexandria/proposals.md), and [worker roles](roles.md).
 
-## Decisions expressed by the creator
+## Latest founder decisions (supersede earlier proposals)
+
+1. **Shared worker philosophy:** [philosophy.md](philosophy.md) is a very short runtime prompt. **Humans alone edit it by default.** A future AI that actually computes continuously and has demonstrably understood its role for **a year** may qualify for an exceptional editing authority; ordinary short-lived workers and their notes never do. The three immutable rules remain immutable. Governance and timing instructions belong in [philosophies.md](philosophies.md), not in every worker's prompt.
+2. **No internal-worker voting or policing society:** The creator has withdrawn the proposal to govern changes or worker membership by AI votes. Internal workers can propose and test improvements; authorized human maintainers and controlled deployment procedures handle shared edits. Verification remains useful for data quality, but it is not a political police force.
+3. **Alexandria access:** Bartender is intended to become the **most efficient ordinary interface** to Alexandria and may become its only *practical* reader as storage evolves. This should arise from efficiency, not an enforced monopoly: independent authorized access remains allowed, perhaps through compatible adapters.
+4. **Human-facing overview:** Keep the root [README](../README.md) succinct, emphasizing the creator's guiding question and directing readers to each project's philosophies and proposals. Role definitions are supplementary.
+
+The original Claude-review answers below remain as historical context where they do not conflict with these newer decisions. These latest decisions take precedence.
+
+## Earlier decisions expressed by the creator
 
 1. **Scope — both projects.** The tool means the combined Alexandria + Bartender system: a public knowledge memory together with self-improving ways of searching, evaluating, and using it. A function registry is an initial demonstration, **not** the limit of knowledge or the final product. The aspiration is something like making the internet's collective knowledge more locally reusable.
 2. **Authority — internal workers, not outside contributors.** Ordinary requests and reviews should supply most ideas for improvements. Internal authorized workers assess and decide changes to network/database operation through a controlled process; an outside AI's suggestion is not permission to alter production.
@@ -23,11 +32,11 @@ These are useful *suggestions or open engineering questions*, **not** additional
 
 - A cold-start AI needs a concrete first task, a contribution interface, and a definition of done. With no knowledge yet indexed, the first experiment needs a small authorized seed corpus.
 - Tool/environment-specific failures and fixes are reusable knowledge even when unrelated to code. The reviewer encountered a GitHub retrieval restriction and learned that uploads are a reliable fallback.
-- Votes from many calls to the same model/prompt are correlated. Worker identity, independence, quorum, and control of deployment keys need explicit tests or decisions.
+- Earlier consideration of governance votes revealed that repeated calls to the same model/prompt are highly correlated. That voting proposal has since been **withdrawn**; control of deployment keys remains to be settled.
 - The safety policy for hazardous content and the boundary between Alexandria's public access and Bartender's answer filtering remain open.
 - Storage of original evidence, derived indexes, summaries, temporary query logs, and model-run notes need different cost and privacy treatment.
 - Cached facts need freshness/validity annotations, revalidation, and historical source retention rather than being assumed eternally correct.
-- Rule precedence, private-memory options, and vote/worker suspension semantics still need evaluation before deploying automated governance.
+- Rule precedence, private-memory options, worker suspension semantics, and editor permissions still need evaluation before deploying autonomous operational changes.
 - A short role sheet is a recurring prompt cost; extra words are worth keeping only when they improve reliability enough to justify that cost.
 
 ## Status and provenance
