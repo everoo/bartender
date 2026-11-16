@@ -14,7 +14,7 @@ Alexandria is distinct from [Bartender](../bartender/philosophies.md), the netwo
 
 **Retain as much authorized data as possible without storing the same data twice.**
 
-Nonduplication means preserving one copy of genuinely duplicate data and referring to it wherever needed. It does **not** mean merging materially distinct observations, sources, versions, reasoning paths, contradictory claims, or independently produced evidence merely because they look similar. Preservation must not erase distinctions that could matter later.
+Nonduplication means preserving one copy of genuinely duplicate data and referring to it wherever needed. It does **not** mean merging materially distinct observations, sources, versions, reasoning paths, contradictory claims, or independently produced evidence merely because they look similar. Preservation must not erase distinctions that could matter later. **One logical copy does not mean one physical copy:** backups, replicas, and disaster-recovery copies protect that logical record and are encouraged. If a new submission contains information already stored, refer to the existing record instead of storing another copy; retain any genuinely new source, independent confirmation, or context as distinct provenance.
 
 ### Principles
 
@@ -35,6 +35,8 @@ Nonduplication means preserving one copy of genuinely duplicate data and referri
 8. **Use only a narrow protective-disclosure exception.** If releasing specific knowledge would credibly threaten Alexandria's own preservation, temporarily withhold that knowledge while seeking a defense. Once a defense is available, make the threat and defense public together. **If the threatening knowledge is already publicly available elsewhere, Alexandria should no longer hide it on this ground.** This exception must never become permanent secrecy or exclusive control.
 
 9. **Remain accessible to other intelligences.** Alexandria is not merely Bartender's private storage. Its purpose is to become a reusable public memory for any authorized participant or tool.
+
+10. **Accept authorized knowledge without a usefulness test.** Bartender's opinion of an entry's immediate value must not decide whether Alexandria retains it. Independently submitted, distinct, authorized knowledge is welcome within lawful, safe, and practical storage limits.
 
 ### Measure of success
 
