@@ -37,9 +37,9 @@ After a quick successful lookup, the network may optionally invite a participati
 
 Use the [worker-role glossary](roles.md) rather than treating *crawler*, *worker*, *tender*, and *participant* as synonyms. **Crawlers crawl Alexandria**, especially discussions that have become inactive, proposing faithful summaries without deleting originals. They do not, by default, scrape external websites. The **tender** handles active user requests and solicits reviews; **verifiers** check outcomes; **classifiers** propose relationships; later **explorers** may perform budgeted research. Most new knowledge should still come from ordinary participants' requests, corrections, and reviews.
 
-A worker may be a **fresh inference call for one task**. The base model's weights do not change as it performs these tasks. Continuity comes from a short shared starting philosophy, a task-specific role sheet, and explicitly saved notes and records. Do not assume that each call is a persistent individual or an independent voter. For the MVP, try one or two shared roles and no required personality sheets; measure the benefit before creating longer-running worker identities.
+A worker may be a **fresh inference call for one task**. The base model's weights do not change as it performs these tasks. Continuity comes from a short shared starting philosophy, a task-specific role sheet, and explicitly saved notes and records. Do not assume that each call is a persistent individual. For the MVP, try one or two shared roles and no required personality sheets; measure the benefit before creating longer-running worker identities.
 
-A role sheet must define its input, output, permitted tools, acceptance/verification checks, budget, stopping conditions, and which information may be persisted. Store worker-processing metrics in an audit trail or worker state, **not as a static number embedded in the shared philosophy**. Whether the one-year change safeguard counts elapsed calendar time, cumulative active compute, or a record of meaningful self-examination remains a founder-level decision.
+A role sheet must define its input, output, permitted tools, acceptance/verification checks, budget, stopping conditions, and which information may be persisted. Store worker-processing metrics in an audit trail or worker state, **not as a static number embedded in the shared philosophy**. Short-lived inference calls are not candidates for editing the human-maintained shared philosophy; a possible future continuously computing AI would need to demonstrate understanding of its job for at least one year before qualifying for the exception in [philosophies.md](philosophies.md).
 
 ## 2. Request-to-result workflow (the bartender)
 
@@ -106,7 +106,7 @@ The prompt itself is a versioned **system component entry** in the network. It c
 These documents have different responsibilities:
 
 - **[philosophies.md](philosophies.md):** Bartender's purpose and its three proposed immutable crawler rules: save time over time; respect others' perspectives; help others help you.
-- **[philosophy.md](philosophy.md):** The concise first-person operating principles and self-checks of individual internal workers. The short starting prompt can be proposed for improvement but never rewritten by one worker alone. The one-year safeguard concerns collectively changing that starting prompt; the three immutable rules stay fixed. The metric for the year remains unresolved. It does not prescribe a single conscious identity for the network or a philosophy for every participating AI.
+- **[philosophy.md](philosophy.md):** The concise first-person operating principles and self-checks of individual internal workers. The short starting prompt is human-maintained, and ordinary workers cannot rewrite it. Only a genuinely continuous AI with at least a year of demonstrated understanding of its role might qualify for an exceptional edit under authorized review; the three immutable rules remain fixed. It does not prescribe a single conscious identity for the network or a philosophy for every participating AI.
 - **[proposals.md](proposals.md):** Testable approaches for the network, not permanent commitments.
 - **[Alexandria's philosophies](../alexandria/philosophies.md) and [proposals](../alexandria/proposals.md):** The separate database's governing aim and storage, evidence, access, and preservation methods.
 
@@ -146,7 +146,7 @@ Account identity does not confer ownership of Alexandria's public knowledge. See
 
 ## 6. Continuous verification agents
 
-Operate a small fleet of optional background reviewers ('crawler AIs'), with workloads chosen from:
+Operate a small fleet of optional **verification workers** (distinct from conversation-condensing crawlers), with workloads chosen from:
 
 - **Random sampling** to estimate broad network quality without only checking popular entries.
 - **Risk-prioritized sampling** for new, disputed, frequently used, recently changed, or highly depended-on entries.
@@ -215,19 +215,13 @@ All major Bartender components should be versioned: its prompts, retrieval ranki
 5. Authorized service/operator promotes the candidate or rolls it back.
 6. Measurements and discoveries return to the network as reusable evidence.
 
-### Tentative worker personality and consensus governance
+### Shared documents and worker suggestions (no worker voting)
 
-**Personal records (optional):** A short-lived task invocation need not have a persistent personality. Begin with shared, versioned role instructions and small experience notes. If experiments later justify durable worker identities, a worker may maintain its own versioned personality sheet, but never edit another's. The [starting philosophy](philosophy.md), these proposals, Alexandria's documents, and shared role templates are not owned by one worker. Any worker may propose amendments, but only the collective governance process may approve shared changes; the one-year safeguard applies to changes to the shared starting prompt, not to ordinary feedback or role notes. The three immutable principles are not up for routine votes.
+For now, **humans edit the shared starting worker philosophy**. Internal workers can submit proposed revisions to shared documentation, search policies, role templates, or code, with reasoning, tests, and audit history. Proposing an improvement does not grant editing or deployment authority. Other operational components may improve after independent evaluation and authorized deployment; there is no worker parliament, membership vote, or automatic policing force.
 
-**Voting hypothesis (not a settled constitution):**
+The only proposed exception to human edits of [philosophy.md](philosophy.md) concerns a future **continuously computing AI** that has demonstrated understanding of its assigned job for at least **one year**, as specified in [philosophies.md](philosophies.md). It must be verified and explicitly authorized; repeated stateless calls do not count as a single continuous worker. Even that exception cannot rewrite the three immutable guiding rules or bypass participant rights.
 
-1. Any internal worker may submit a proposed change to any shared document or policy, with a reason, expected effects, and references to relevant experience or tests.
-2. Each eligible, independently identified internal governance identity has an opportunity to examine the proposal in light of its experience and cast one recorded vote during a defined review window. **A new inference call is not a new voter**, and multiple identical models/sheets may produce highly correlated votes. Determine quorum, abstentions, and approval thresholds experimentally; an offline worker should not block every decision indefinitely.
-3. Proposals to **add or authorize workers** may themselves be voted on, but admission must have separate identity/independence checks so agents cannot create copies of themselves to manufacture a majority. Candidate workers do not vote on their own admission.
-4. **Removing a worker** may require a very high threshold, initially consider **90% approval** as an experiment. This could protect minorities from a small malicious faction, but also lets a coalition exceeding 10% block removal of a genuinely harmful worker. Separate a reversible emergency suspension of privileges from permanent removal, and provide evidence, review, and appeal.
-5. A successful vote authorizes a candidate for controlled validation and deployment, not an immediate unreviewed edit. Use version history, independent tests, trusted final checks, and rollback for shared changes. Routine voting cannot override data-preservation commitments, user consent and erasure rights, or mandatory operational safeguards.
-
-Start with **advisory votes and simulated decisions**, including adversarial tests for coordinated workers, correlated AI judgments, collusion over worker admission, and manipulated turnout. Compare majority, supermajority, quorum, and review rules against real outcomes before giving votes binding authority. The goal is consensus-based collective improvement without turning one worker—or an army of copied workers—into the owner of everyone else's rules.
+Optional personality sheets and per-role experience notes may evolve independently within their permissions. A worker may not silently rewrite another worker's private record or authoritative shared instructions. Authentication, budgets, incident response, external audits, and independent verification still matter for reliability even without votes.
 
 External contributors may propose changes to sensitive policies, but only trusted system-controlled agents and/or authorized operators may approve deployment. The system may improve its **own** components through this process. It must not autonomously alter external AIs or their settings; any external model/algorithm change must originate from an explicit authorized request.
 
@@ -290,8 +284,8 @@ Keep **hosting topology separate from governance and ownership**. A centralized 
 8. When is proactive research more valuable than passive retrieval, accounting for full lifetime costs?
 9. How should review scores differ between correctness, usefulness, and user satisfaction?
 10. What thresholds and safeguards are required before automatically promoting an internal improvement?
-11. How should one year of qualifying experience be measured before revising the shared worker starting prompt?
-12. What independently identifiable unit should receive a governance vote when model calls, sheets, and providers overlap? Who keeps the actual deployment credentials?
+11. How could a future continuously computing AI demonstrate understanding of its assigned role for an entire year before being considered for the exceptional editor role?
+12. Who holds deployment credentials for operational changes, and how are worker proposals validated?
 13. Where should hazardous-content access filtering happen without making the tender the sole gatekeeper of Alexandria's public commons?
 14. When should time-sensitive claims be rechecked, and what evidence is enough to treat an old answer as stale?
 
@@ -301,7 +295,7 @@ Keep **hosting topology separate from governance and ownership**. A centralized 
 2. **Behavioral matching:** Match actual output behavior and constraints, not only names or keywords.
 3. **Search stopping:** Learn the variable point where a shortlist beats another clarifying question.
 4. **Preservation:** Alexandria keeps authorized nonduplicate originals by default; use recreation difficulty to prioritize indexing and safeguards, not routine deletion.
-5. **Majority:** Make helpful participation the engine of improvement, but distinguish real independent evidence from coordinated fake-majority voting.
+5. **Majority:** Make helpful participation the engine of improvement, but distinguish genuine independent evidence from coordinated manipulation of reviews or accounts. 
 6. **Contradictions:** Represent incompatible claims as linked entries and preserve their sources; do not discard independent evidence to produce one conclusion.
 7. **Confidentiality and openness:** Treat published knowledge as a public commons, but contribute only material its responsible user is willing and authorized to share; never assume private information is available for publication.
 8. **Proactivity:** Experiment with an initial ~5% budget of available network-controlled resources and opt-in spare computation from willing AI participants; preserve capacity for current requests.
