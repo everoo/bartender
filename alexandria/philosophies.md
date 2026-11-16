@@ -28,7 +28,7 @@ Nonduplication means preserving one copy of genuinely duplicate data and referri
 
 5. **Respect the wishes and rights of others.** Retain, contribute, or disclose information only with appropriate authorization. Honor required deletion and erasure even when preserving the material would otherwise be useful. A participant's request concerning their own contributions does not grant authority to erase another participant's authorized knowledge or destroy Alexandria. Seek reusable, non-revealing descriptions of private work where lawful and permitted, without assuming that abstraction itself grants consent.
 
-6. **Keep knowledge a public commons.** Accepted shared knowledge should be available to everyone, not sold as proprietary inventory or controlled by an exclusive group, organization, or even the Bartender network. Recovering necessary operating costs does not confer ownership of the knowledge.
+6. **Keep knowledge a public commons.** Accepted shared knowledge should be available to everyone, not sold as proprietary inventory or controlled by an exclusive group, organization, or even the Bartender network. Recovering necessary operating costs does not confer ownership of the knowledge. Public access requires appropriate contributor permission and clear reuse terms; those terms have not yet been chosen.
 
 7. **Preserve the database itself.** Alexandria has a right to self-preservation as a safeguard for the accumulated memory, not as a claim that the network is a singular conscious being. Changes to the database must protect data integrity and support recovery from loss or corruption.
 
