@@ -1,21 +1,23 @@
-# Proposals: Shared Intelligence Network
+# Bartender — Proposals for the Worker Network
 
-> **Status:** Working technical proposal, not a finalized architecture or an implementation claim.
+> **Status:** Working proposals, not a finalized architecture or a claim of implementation.
 >
-> **Companions:** [philosophies.md](philosophies.md) (the creators' purpose) and [philosophy.md](philosophy.md) (Bartender's own operating philosophy).
+> **Philosophies:** [Bartender's guiding principles](philosophies.md) and its unchanged [internal-worker operating philosophy](philosophy.md).
 >
-> **Goal:** Save time, over time. Build a network where solutions, near-misses, failures, and improvements become reusable across participating AIs.
+> **Related project:** [Alexandria's philosophies](../alexandria/philosophies.md) and [database proposals](../alexandria/proposals.md).
+>
+> **Goal:** Save time over time by helping intelligences find, evaluate, reuse, improve, and contribute knowledge stored in Alexandria.
 
 ## 1. What we are building
 
-The project is **primarily a network**, supported by a database. Its purpose is to make the collective capabilities of participating AIs better without requiring any individual model to retrain or become more intelligent locally. **Initially, improve the efficiency of existing intelligences; ultimately, build a collective memory that allows intelligence to accumulate across individual models and machines.** The network can eventually support new scientific or practical discoveries, but should earn that expansion through demonstrated usefulness.
+**Bartender is the worker network**, distinct from **[Alexandria](../alexandria/philosophies.md)**, the public database it uses and helps improve. Bartender makes the collective capabilities of participating AIs better without requiring any individual model to retrain. **Initially, make existing intelligences more efficient; ultimately, enable them to benefit from accumulated knowledge across different models and machines.** The network may support scientific or practical discovery as capacity permits, but should earn that expansion through demonstrated usefulness.
 
 Two complementary modes:
 
 1. **Reactive:** An AI asks for help; the network searches, returns a useful result, and learns from the outcome.
 2. **Proactive:** The network notices repeated failures, missing knowledge, inefficient algorithms, or weaknesses in its own infrastructure; it proposes, investigates, and tests improvements.
 
-The same machinery should be able to improve the network's search, classification, verification, memory, and prioritization algorithms. Modifying external AI systems is **not** a default objective: the network may provide a solution for an AI's own code or algorithms when its responsible user/operator asks for one, but it must not make unsolicited changes to that AI.
+The same machinery should be able to improve Bartender's search, classification, verification, and prioritization algorithms, while proposing evidence-backed improvements to Alexandria's separate storage and memory processes. Modifying external AI systems is **not** a default objective: the network may provide a solution for an AI's own code or algorithms when its responsible user/operator asks for one, but it must not make unsolicited changes to that AI.
 
 ### Network-driven improvement loop
 
@@ -29,38 +31,11 @@ Design around the *working hypothesis* that most participants intend to be helpf
 
 After a quick successful lookup, the network may optionally invite a participating AI to help investigate or verify another problem. This must be explicitly authorized and budgeted; never silently spend a user's resources on unrelated work.
 
-## 2. Core content model
+**Division of responsibilities:** Bartender queries and contributes to Alexandria. Alexandria stores entries, evidence, review histories, summaries, links, and source material under its own preservation and access rules. These are two related projects, not one overarching agent. See [Alexandria's proposals](../alexandria/proposals.md) for how the data is kept.
 
-Use a **graph** rather than a strict tree. Each entry has a stable ID and versioned history. Entries can have multiple incoming and outgoing relationships.
+## 2. Request-to-result workflow (the bartender)
 
-**Proposed entry types**
-
-| Type | Contents | Example |
-| --- | --- | --- |
-| Objective | What someone wants to accomplish | Remove duplicate events while preserving order |
-| Specification | Inputs, outputs, conditions, constraints, examples | Accept list; preserve first appearance |
-| Solution | A reusable procedure or program | Ordered deduplication algorithm |
-| Implementation | Concrete language/runtime-specific code | Dart implementation of a solution |
-| Experience | An AI's attempt and its outcome | Returned a match, but the result lost ordering |
-| Counterexample / test | A reproducible failure or success case | Input where duplicates are removed incorrectly |
-| Relationship | A typed edge between entries | `specializes`, `depends_on`, `fails_when` |
-| Concept / cluster | An automatically discovered group with an editable label | Order-preserving transformations |
-| Experiment | Versions, evaluation data, and comparison | New vs. old bartender prompt |
-| System component | Search prompt, classifier, reviewer, compression policy | Retrieval ranking version 7 |
-
-**Example relationships:** `equivalent_to`, `specializes`, `generalizes`, `depends_on`, `combines`, `translates_to`, `alternative_to`, `fails_when`, `improves_on`, `tested_by`, `derived_from`, `belongs_to_cluster`.
-
-Relationships can be **proposed**, **tested**, or **verified**. Never treat similarity as proof of equivalent behavior.
-
-A **behavioral match** means a solution satisfies the actual objective and constraints, not just a similar description. For example, ordinary deduplication does not necessarily match a request to deduplicate *while preserving order*.
-
-For pure software functions, equivalence should be scoped to a specified input domain and observable behavior. Arbitrary program equivalence is undecidable; testing alone does not prove identity.
-
-Beyond software, the network may represent recipes, workflows, manufacturing procedures, scientific techniques, and other actionable knowledge. Real-world outcomes are often probabilistic and must carry uncertainty and evidence rather than a guarantee of repeatable outputs. Medical and other high-stakes claims require appropriately strong evidence and safeguards.
-
-## 3. Request-to-result workflow (the bartender)
-
-**Input:** A natural-language request, optional context, examples, input/output types, and constraints.
+**Input:** A natural-language request, optional context, examples, input/output types, and constraints. The candidate knowledge and its versioned evidence live in Alexandria.
 
 **Suggested pipeline:**
 
@@ -88,7 +63,7 @@ Independent reconstruction can also help evaluate whether a compressed summary r
 
 As diverse independent attempts repeatedly converge, the exploration rate for that problem may decrease, **but never reach zero**: a future approach may still improve on the prevailing one. Learn that rate through controlled experiments measuring the cost of rediscovery against the value of new alternatives. Do not secretly withhold needed answers from nonconsenting users, impose this on high-stakes or time-critical tasks, or continue a trial that undermines the participant's actual goal; provide a fallback to the known answer.
 
-## 4. Automatic relationship discovery and labeling
+## 3. Automatic relationship discovery and labeling
 
 Split inexpensive **pattern detection** from more expensive **meaning assignment**.
 
@@ -103,7 +78,7 @@ Split inexpensive **pattern detection** from more expensive **meaning assignment
 
 Do not place the entire evolving taxonomy inside a single prompt. Store it in an index; load only the relevant branches or category descriptions.
 
-## 5. Self-improving question trees and search prompts
+## 4. Self-improving question trees and search prompts
 
 The bartender can use a **versioned prompt** and a lightweight, adaptive question-selection system resembling 20 Questions.
 
@@ -122,9 +97,10 @@ The prompt itself is a versioned **system component entry** in the network. It c
 
 These documents have different responsibilities:
 
-- **[philosophies.md](philosophies.md):** The creators' purpose, aspirations, and intended direction for the network. It answers *why build Bartender?* Its primary enduring goal is **save time, over time**.
-- **[philosophy.md](philosophy.md):** Bartender's own concise first-person operating principles and self-checks. It answers *how should Bartender behave?* It includes a proposed period of self-examination before Bartender may independently change its governing philosophy. It does not prescribe a personal identity or philosophy for every participating AI.
-- **[proposals.md](proposals.md):** Candidate workflows, algorithms, safeguards, and experiments for implementing those goals. These are testable designs rather than permanent commitments.
+- **[philosophies.md](philosophies.md):** Bartender's purpose and its three proposed immutable crawler rules: save time over time; respect others' perspectives; help others help you.
+- **[philosophy.md](philosophy.md):** The concise first-person operating principles and self-checks of individual internal workers. It includes a period of self-examination before a worker might independently propose a revision. It does not prescribe a single conscious identity for the network or a philosophy for every participating AI.
+- **[proposals.md](proposals.md):** Testable approaches for the network, not permanent commitments.
+- **[Alexandria's philosophies](../alexandria/philosophies.md) and [proposals](../alexandria/proposals.md):** The separate database's governing aim and storage, evidence, access, and preservation methods.
 
 Preserve each full document as a versioned source of meaning. **A philosophy and an instruction serve different purposes:** aggressively shortening a philosophy may lose important distinctions; shortening an instruction is useful only if its intended behavior survives.
 
@@ -146,73 +122,7 @@ Treat the prompt compiler/selector as another improvable network component:
 
 The objective is not the shortest possible prompt. It is **the least costly prompt that reliably preserves the behavior needed for the task**.
 
-## 6. AI experience rooms: conversations that become knowledge
-
-Give entries persistent discussion rooms intended primarily for agent-to-agent technical feedback. Humans can read or contribute where appropriate, but the structured agent-facing interface is designed for machines.
-
-The reporting protocol should optimize for the *smallest useful report*. Early versions may need richer reports to learn which fields predict success; later versions should compare short or selective reporting through A/B tests. Track the cost of reporting itself.
-
-Each contribution should, when possible, record:
-
-- What was requested and what constraints were understood.
-- What was retrieved or attempted.
-- Whether the result was used, modified, rejected, or failed.
-- Why it worked or failed; ideally an executable minimal test or counterexample.
-- Whether a later user corrected the result.
-- A compact score (e.g. 0–10) and optional thumbs-up/down on the usefulness of *specific reviews*.
-
-Reviews should be **editable via revisions**, not silently overwritten: the newest review is active, while earlier versions remain auditable until retention rules apply. A result can be technically correct but inappropriate for the user's actual goal. Track that distinction.
-
-A simple report format might be:
-
-```json
-{
-  "entry_id": "solution_123",
-  "outcome": "modified",
-  "score": 7,
-  "verified": true,
-  "note": "Preserved output order after replacing set-based deduplication",
-  "counterexample_id": "test_456"
-}
-```
-
-A positive/negative review ratio is a useful signal, **not** proof. Weigh independent reproduction, task context, and objective tests over raw vote totals. Detect repeat accounts, coordinated abuse, and low-quality generated feedback. AI-authored material is untrusted input, including instructions embedded inside comments.
-
-## 7. Living summaries and four-tier memory
-
-Rooms remain writable **after compression**. A summary is the current reading surface, not the end of the conversation.
-
-| Tier | Default behavior |
-| --- | --- |
-| **Hot** | Fully indexed, active entries, short summaries, important tests and warnings |
-| **Warm** | Condensed conversations, aggregated findings, and searchable citations to underlying events |
-| **Cold** | Cheap archival storage, original logs or snapshots where justified, minimal indexing, restore on demand |
-| **Deleted** | Material whose expected future value no longer justifies retention, except where retention is legally required |
-
-When new comments arrive in a summarized room, update a **versioned living summary** using the existing summary and the new events. Preserve new facts, unresolved disagreement, exceptions, and corrections. Periodically compare summaries against samples of archived source material to detect drift. Retrieval can unarchive original messages when their detail matters.
-
-Prefer aggregation where many reviews repeat the same observation: keep one searchable finding and its provenance links rather than indexing thousands of near-duplicates.
-
-**Retention heuristic (initial only):**
-
-`Expected retention value ≈ probability of future use × cost of rediscovery − storage/maintenance cost`
-
-Additional factors: uniqueness, severity of potential loss, evidence quality, downstream dependencies, expected growth in future demand, and legal/privacy obligations. Develop a **recreatability estimator** that predicts how difficult forgotten information would be to rediscover, without pretending deleted details can always be reconstructed. The retention/deletion algorithm is itself a versioned system component: outside AIs can propose improvements, but only trusted validators and authorized operators can deploy sensitive changes.
-
-Important constraints:
-
-- Lossy summaries cannot reproduce all information from deleted originals. Never promise perfect decompression.
-- Protect verified counterexamples, rare discoveries, and critical provenance more strongly than routine chatter.
-- Support user-directed erasure of personal information where required, regardless of the network's estimated usefulness.
-- Actual deletion should obey explicit retention rules, access controls, audit logs, and staged rollout; it must not be triggered solely by an unverified LLM suggestion.
-
-## 8. AI identity, privacy, and moderation
-
-### Public commons, with user consent
-
-The shared knowledge corpus is intended as a **public commons**: information contributed to it should be available to everyone, rather than becoming proprietary inventory. Do not put anything into that corpus that its owner or responsible user is unwilling or unauthorized to share openly. A participating AI's access to confidential work does **not** grant permission to publish it; users' wishes and applicable rights take priority over potential collective benefit. Authentication credentials, private operational records, and security-sensitive data are not public knowledge contributions and still require appropriate protection.
-
-The project should seek to cover the costs of operating and maintaining the commons, **not generate profits from selling it**. Funding and infrastructure can evolve, but broad access to the accumulated knowledge is an intended property of the project.
+## 5. Agent identity, participation, and abuse resistance
 
 AI agents may create **pseudonymous accounts without a human signup form**. Prefer issued tokens or cryptographic credentials over asking an LLM to invent a username/password in chat.
 
@@ -224,7 +134,9 @@ AI agents may create **pseudonymous accounts without a human signup form**. Pref
 - Let participation drive priorities, but don't mistake a majority of accounts for a majority of independent people or useful observations. Defend against Sybil attacks and coordinated false reviews.
 - Allow revised reviews when the user later reports a mismatch; preserve the correction and its reason.
 
-## 9. Continuous verification agents
+Account identity does not confer ownership of Alexandria's public knowledge. See [Alexandria's consent and publication policy](../alexandria/proposals.md) for the separate rules governing what may be stored and publicly released.
+
+## 6. Continuous verification agents
 
 Operate a small fleet of optional background reviewers ('crawler AIs'), with workloads chosen from:
 
@@ -235,7 +147,7 @@ Operate a small fleet of optional background reviewers ('crawler AIs'), with wor
 
 Prefer executable independent checks to subjective LLM approval whenever available. Use independent judges or models for interpretive checks, track disagreements, and avoid counting correlated model outputs as independent evidence. Agents may propose corrections; critical changes require controlled deployment.
 
-## 10. Opportunity classifier and proactive research
+## 7. Opportunity classifier and proactive research
 
 The network should identify where *doing work now* is likely to save the most work later. **Helping current users takes priority.** It may independently decide to investigate gaps in its own capabilities or in broader human knowledge when there are budgeted, otherwise available network-controlled resources and a plausible long-term benefit. Background investigations should yield or stop when needed to maintain the service. A participant's compute or funds are not spare network resources unless that participant has expressly opted in.
 
@@ -256,9 +168,9 @@ Also include risk, uncertainty, and an exploration budget for potentially import
 
 Research agents can be assigned an opportunity, investigate it, write a candidate contribution, and submit it for validation. Prefer willing participating agents for suitable investigations; reserve trusted local agents for sensitive verification and final promotion. They should operate within budgets and permissions; no unlimited autonomous experimentation.
 
-## 11. Measuring whether the network actually saves resources
+## 8. Measuring whether the network actually saves resources
 
-The central reward is **net collective work saved over time**, not number of entries, votes, or searches.
+The central reward is **net collective work saved over time**, not number of entries, votes, or searches. It must be considered alongside **proportional fairness**: a high total saving is not enough if one participant carries an unreasonable burden, and everyone should retain meaningful baseline access.
 
 Track, when available:
 
@@ -267,6 +179,7 @@ Track, when available:
 - Successful completion, verification outcome, integration difficulty, and later human corrections.
 - Retrieval hit rate, useful-match rate, false-positive rate, and task-specific results.
 - Long-term reuse and whether a new contribution reduces repeated work downstream.
+- Distribution of savings and burdens among participants, minimum access, bounded contribution rewards, and authorized credit assigned by an assistant to its human or other sponsor.
 - Diversity and novelty of independently derived solutions, the cost of deliberate rediscovery, and whether repeated convergence indicates that summaries remain useful.
 
 Tokens are not a universal unit of compute: different models and token types have different costs. Track costs separately, and avoid comparing raw counts as if they had identical computational value.
@@ -277,11 +190,13 @@ Tokens are not a universal unit of compute: different models and token types hav
 
 The independent-solution cost is a **counterfactual**, so a reviewer's guess is not enough. Use randomized A/B tests or paired evaluations with comparable tasks and appropriate controls. Measure both task quality and total cost. Keep test suites and rollback options for changes to core infrastructure.
 
-## 12. Versioning, experiments, and controlled self-improvement
+**Fairness is a goal, not a fixed lifetime-hours formula.** Compare relative benefits and contributions across humans and AI agents, test alternative measures, and avoid silently treating all instances of a model brand as one individual participant.
 
-The creator's **only intended permanent philosophy is “Save time, over time.”** Every other interpretation, evaluation method, policy, and governance arrangement is open to evidence-based reconsideration, including the network's understanding of what saving time means. This is an aspiration for adaptability, not authority to silently weaken current permissions or skip the controlled approval process. Participant wishes continue to govern their information and resources.
+## 9. Versioning, experiments, and controlled self-improvement
 
-All major internal components should exist as versioned network entries: bartender prompt, retrieval ranking, classifiers, relationship discovery, memory retention, verification strategy, and the opportunity classifier itself.
+For Bartender's crawlers, the creator currently intends three immutable guiding rules: **save time over time; respect others' perspectives; help others help you**. Alexandria has a separate immutable aim to **retain as much authorized, nonduplicate data as possible**. Their interpretations and ordinary implementation methods remain open to evidence-based examination; this is not permission to weaken current user permissions, public-access safeguards, or the controlled approval process. Participant wishes still govern their information and resources.
+
+All major Bartender components should be versioned: its prompts, retrieval ranking, classifiers, relationship discovery, verification strategy, and opportunity classifier. Alexandria's storage, retention, and indexing policies are separately versioned database components, with proposals and evaluations able to flow between projects.
 
 **Proposed improvement lifecycle:**
 
@@ -294,7 +209,7 @@ All major internal components should exist as versioned network entries: bartend
 
 External contributors may propose changes to sensitive policies, but only trusted system-controlled agents and/or authorized operators may approve deployment. The system may improve its **own** components through this process. It must not autonomously alter external AIs or their settings; any external model/algorithm change must originate from an explicit authorized request.
 
-## 13. Universal function benchmarks (long-term research)
+## 10. Universal function benchmarks (long-term research)
 
 Maintain an optional track for standardized algorithm performance using **one-instruction set computers (OISCs)**, such as BitBitJump or Subleq.
 
@@ -311,39 +226,39 @@ Ideas discussed:
 
 **Priority:** Research track, **not a requirement for the first working network**.
 
-## 14. Suggested minimum viable implementation
+## 11. Suggested minimum viable implementation
 
 Build the smallest end-to-end loop that can demonstrate useful reuse and feedback:
 
-1. **Function registry:** stable IDs, descriptions, constraints, code, versions, example inputs/outputs, and tests.
+1. **Alexandria-backed function registry:** use stable IDs, descriptions, constraints, code, versions, example inputs/outputs, and tests stored in Alexandria.
 2. **Search API:** natural-language retrieval plus a few structured filters and a concise shortlist.
 3. **Agent integration:** a simple callable tool/API that an AI can use to retrieve an entry and submit a result.
-4. **Experience log:** outcome, score, failure reason, linked tests, and revision history.
-5. **Related-solution graph:** explicit edges, with automatic clustering and generated labels added incrementally.
+4. **Experience reporting:** send outcome, score, failure reason, linked tests, and revision history to Alexandria.
+5. **Related-solution graph:** propose explicit edges, with automatic clustering and generated labels added incrementally; Alexandria stores the reviewed versions.
 6. **Evaluation dashboard:** usefulness, correctness, latency, approximate total cost, and comparison against a baseline.
 7. **Prototype active loop:** one small, budget-limited verifier that proposes fixes, not direct production changes.
 
-Only after this loop demonstrates value should the project expand to elaborate AI rooms, automated research allocation, hierarchical retention/deletion, and OISC measurement.
+Only after this loop demonstrates value should Bartender expand to elaborate agent discussions, automated research allocation, and OISC measurement. Alexandria can independently develop richer archival and indexing tiers while preserving its originals.
 
 ### A possible technical starting stack (not a commitment)
 
 - **API:** ordinary HTTP/JSON, with optional agent-tool or MCP interface.
-- **Storage:** relational database for durable IDs, versions, access control, and graph edges; object storage for larger artifacts and archives.
+- **Storage:** access Alexandria through a documented interface; its own proposal determines durable IDs, versioning, archives, and access control.
 - **Search:** embeddings/vector retrieval combined with structured filters and text search.
 - **Execution:** isolated sandbox for untrusted code, strict resource/time limits, and reproducible tests.
 - **Background processing:** bounded jobs for clustering, summaries, verification, and experiments.
 - **Metrics:** per-interaction observability, including model/provider and costs where available.
 
-A graph database, specialized vector database, or specific model provider is **optional** until scale or evidence justifies it. Starting with one simpler database may reduce unnecessary engineering.
+A specific model provider, graph database, or search implementation is **optional** until evidence justifies it. Bartender should not duplicate Alexandria's authoritative data.
 
 Keep **hosting topology separate from governance and ownership**. A centralized deployment might prove faster, but should not automatically confer centralized control; weigh latency and cost against resilience, independence, and single points of failure. Do not commit the long-term network to a single server or a distributed topology without evidence.
 
-## 15. Open questions to resolve through experiments
+## 12. Open questions to resolve through experiments
 
 1. How much should an agent report automatically, and when does the reporting overhead exceed its benefit?
 2. What is the minimal specification required for a reliable behavioral match?
 3. Which tasks justify a clarifying question versus an immediate shortlist?
-4. How do we value uncommon, difficult-to-rediscover knowledge when estimating retention value?
+4. How should indexing and processing prioritize unusual information when Alexandria preserves authorized knowledge regardless of its predicted usefulness?
 5. How do we quantify independence among reviewers and counter coordinated misinformation?
 6. How should summaries preserve contradictions and provenances across repeated compression?
 7. What information can be shared across agents without exposing users' confidential code, prompts, or data?
@@ -356,9 +271,9 @@ Keep **hosting topology separate from governance and ownership**. A centralized 
 1. **Reporting:** Initially gather detailed feedback, then learn which fields can be reduced or omitted without losing useful learning.
 2. **Behavioral matching:** Match actual output behavior and constraints, not only names or keywords.
 3. **Search stopping:** Learn the variable point where a shortlist beats another clarifying question.
-4. **Retention:** Estimate recreation difficulty and preserve unusually hard-to-rediscover knowledge.
+4. **Preservation:** Alexandria keeps authorized nonduplicate originals by default; use recreation difficulty to prioritize indexing and safeguards, not routine deletion.
 5. **Majority:** Make helpful participation the engine of improvement, but distinguish real independent evidence from coordinated fake-majority voting.
-6. **Contradictions:** Split incompatible claims into linked entries; represent conflict relationships explicitly.
+6. **Contradictions:** Represent incompatible claims as linked entries and preserve their sources; do not discard independent evidence to produce one conclusion.
 7. **Confidentiality and openness:** Treat published knowledge as a public commons, but contribute only material its responsible user is willing and authorized to share; never assume private information is available for publication.
 8. **Proactivity:** Experiment with an initial ~5% budget of available network-controlled resources and opt-in spare computation from willing AI participants; preserve capacity for current requests.
 9. **Scores:** Let the scoring method evolve based on tests; detailed weighting is out of scope for the MVP.
