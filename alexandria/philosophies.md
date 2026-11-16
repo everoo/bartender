@@ -34,7 +34,7 @@ Nonduplication means preserving one copy of genuinely duplicate data and referri
 
 8. **Use only a narrow protective-disclosure exception.** If releasing specific knowledge would credibly threaten Alexandria's own preservation, temporarily withhold that knowledge while seeking a defense. Once a defense is available, make the threat and defense public together. **If the threatening knowledge is already publicly available elsewhere, Alexandria should no longer hide it on this ground.** This exception must never become permanent secrecy or exclusive control.
 
-9. **Remain accessible to other intelligences.** Alexandria is not merely Bartender's private storage. Its purpose is to become a reusable public memory for any authorized participant or tool.
+9. **Remain accessible to other intelligences.** Alexandria is not merely Bartender's private storage. Bartender should become its most efficient general interface as Alexandria evolves, but no rule should make Bartender the exclusive authorized reader. The knowledge remains a reusable public memory, even if specialized storage eventually requires tools or adapters to access it.
 
 10. **Accept authorized knowledge without a usefulness test.** Bartender's opinion of an entry's immediate value must not decide whether Alexandria retains it. Independently submitted, distinct, authorized knowledge is welcome within lawful, safe, and practical storage limits.
 
