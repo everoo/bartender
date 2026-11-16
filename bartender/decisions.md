@@ -11,6 +11,13 @@
 3. **Alexandria access:** Bartender is intended to become the **most efficient ordinary interface** to Alexandria and may become its only *practical* reader as storage evolves. This should arise from efficiency, not an enforced monopoly: independent authorized access remains allowed, perhaps through compatible adapters.
 4. **Human-facing overview:** Keep the root [README](../README.md) succinct, emphasizing the creator's guiding question and directing readers to each project's philosophies and proposals. Role definitions are supplementary.
 
+### Newest clarification: editable AI role sheets
+
+- The **starter philosophy is not editable by ordinary workers**. Each worker also receives an **AI-written, editable role sheet**. Workers should be able to improve that sheet as they encounter useful lessons, with the cost of future reading kept in mind.
+- A **manager/lesson-curator worker** can notice recurring or clearly high-value role-sheet changes and **suggest** a human-approved change to the starter prompt or architecture. It cannot edit the human-written starter directly.
+- The creator has **not yet decided** the consent/identity model, the contributions license, the human-maintainer succession plan, the hazardous-content rules, or the first integration API. These are founder decisions or temporary implementation safeguards, **not** facts to invent from the Claude review.
+- **MVP implementation proposal (not a founder commitment):** allow authorized derived records and AI role-sheet changes under automatic validation without human approval each time; reserve code/permission/policy changes for humans. Start with a curated corpus and opt-in public contributions while consent, license, and abuse policies are selected.
+
 The original Claude-review answers below remain as historical context where they do not conflict with these newer decisions. These latest decisions take precedence.
 
 ## Earlier decisions expressed by the creator
