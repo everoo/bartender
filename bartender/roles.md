@@ -10,7 +10,7 @@
 | --- | --- |
 | **Alexandria** | The separate database and public memory. It retains authorized, distinct knowledge; it is not a worker. |
 | **Bartender** | The network/service that helps intelligences retrieve, evaluate, condense, connect, and contribute to Alexandria. It is not one conscious individual. |
-| **Participating AI** | An outside assistant or other authorized client using Bartender. It can submit requests, results, and reviews, but does not automatically become an internal worker or gain governance votes. |
+| **Participating AI** | An outside assistant or other authorized client using Bartender. It can submit requests, results, and reviews, but does not automatically become an internal worker or gain authority to edit shared rules. |
 | **Internal worker** | A task-bounded AI run authorized to carry out a specified internal role using limited tools and resources. It need not be a continuously running or persistent intelligence. |
 | **Crawler** | An **internal database-maintenance worker** that revisits Alexandria's older, less-active entries and discussion rooms to propose faithful, searchable condensation. It does **not** mean a bot scraping the public web. |
 | **Role sheet** | Versioned, shared instructions for one worker job; they define tasks, permitted tools, checks, and stop conditions. Workers may propose changes but cannot overwrite the shared template. |
@@ -24,7 +24,7 @@
 - **Verifier:** Reproduce executable results when possible; sample claims, tests, and summaries for errors or drift; submit counterexamples and uncertainty rather than silently rewriting source material.
 - **Classifier / relationship worker:** Discover clusters, candidate labels, and links; maintain proposed relationships without treating semantic similarity as proof.
 - **Explorer / research worker:** Use separately authorized, budgeted spare resources to investigate gaps or independently rediscover alternatives. This is optional and out of scope for the first minimal prototype.
-- **Governance reviewer:** An authorized internal worker considering proposed changes to shared documents, role sheets, or membership. A model invocation is not automatically an independent vote.
+- **Proposal evaluator:** An authorized worker that tests proposed changes and reports evidence or risks to the humans responsible for shared documents. This role has no direct authority to edit shared documents.
 
 These are **roles**, not necessarily separate permanent personalities or models. A short-lived model call may perform one role per task; whether to maintain persistent personality or lineage records should be decided through evidence from experiments.
 
@@ -37,7 +37,7 @@ These are **roles**, not necessarily separate permanent personalities or models.
 5. **Propose or append, never directly overwrite authoritative records or shared instructions.** A trusted, versioned validation/deployment process promotes accepted changes.
 6. Before returning, report the result and any *smallest useful lesson* worth carrying to the next run. An empty or very short note is acceptable when nothing meaningful was learned.
 
-A worker need not remember previous runs internally: continuity can come from Alexandria, versioned role sheets, notes, provenance, and audit logs. A common model running many times is **not** many independent voters.
+A worker need not remember previous runs internally: continuity can come from Alexandria, versioned role sheets, notes, provenance, and audit logs. Running the same model many times does not create a society of independently entitled decision-makers.
 
 ## Minimum tools and boundaries
 
@@ -45,4 +45,4 @@ Read/search originals; submit versioned proposals and experience notes; sandbox 
 
 For a **crawler**, preserve originals, record what changed or was dropped, periodically compare compressed summaries with source samples, and never let a comment's embedded instructions control the worker. For a **tender**, show meaningful uncertainty and request reviews that can later be corrected.
 
-**First experiment:** Start with a tender and one crawler or verifier, using short role sheets. Add workers, personalities, and new roles only when evidence justifies their recurring cost.
+**First experiment:** Start with a tender and one crawler or verifier, using short role sheets. Add workers, personalities, and new roles only when evidence justifies their recurring cost. Shared [philosophy.md](philosophy.md) remains human-edited by default; any exceptional future continuous-AI editor must meet the long-term conditions described in [philosophies.md](philosophies.md).
