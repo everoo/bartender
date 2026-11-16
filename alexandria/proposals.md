@@ -37,7 +37,7 @@ A **behavioral match** means a solution satisfies the actual objective and const
 
 For pure software functions, equivalence should be scoped to a specified input domain and observable behavior. Arbitrary program equivalence is undecidable; testing alone does not prove identity.
 
-Beyond software, Alexandria may represent recipes, workflows, manufacturing procedures, scientific techniques, ordinary facts, original observations, and other authorized knowledge—even when no immediate practical use is known. Subjective accounts and disputed claims are records of what was said or experienced, not automatic verification of their truth. Real-world outcomes are often probabilistic and must carry uncertainty and evidence rather than a guarantee of repeatable outputs. Medical and other high-stakes claims require appropriately strong evidence and safeguards.
+Beyond software, Alexandria may represent recipes, workflows, manufacturing procedures, scientific techniques, ordinary facts, original observations, and other authorized knowledge—even when no immediate practical use is known. For time-sensitive knowledge, keep relevant observation dates, validity windows or environments, last verification, and links to newer corrections; expiration of a claim's current usefulness does **not** mean its historical source should be deleted. Subjective accounts and disputed claims are records of what was said or experienced, not automatic verification of their truth. Real-world outcomes are often probabilistic and must carry uncertainty and evidence rather than a guarantee of repeatable outputs. Medical and other high-stakes claims require appropriately strong evidence and safeguards.
 
 **Nonduplication:** Keep a single authoritative *logical* content record of genuinely identical data and use IDs and references wherever it is reused. If an incoming payload already exists, return its ID and attach only genuinely new provenance, independent evidence, or metadata; do not create another identical content entry. Do not collapse distinct sources, independently obtained results, contradictory accounts, or meaningful versions merely because their summaries appear similar. **Physical redundancy is different:** maintain backups, replicated copies, and recovery mechanisms as needed to preserve that same logical record against hardware failure or disaster.
 
@@ -109,6 +109,10 @@ The shared knowledge corpus is intended as a **public commons**: information con
 
 The project should seek to cover the costs of operating and maintaining the commons, **not generate profits from selling it**. Funding and infrastructure can evolve, but broad access to the accumulated knowledge is an intended property of the project.
 
+### Access policy is separate from preservation
+
+**Unresolved design choice:** Alexandria aims to preserve authorized information, but a Bartender tender may need to decline or filter unsafe outputs according to applicable rules. The creator raised answer-side filtering as a possibility, **not** a decision to make the tender Alexandria's exclusive reader. Other authorized clients must not lose all independent access merely because one AI provider refuses to display certain content. Storage admission, public visibility, access privileges, and response generation may need different policies and safeguards. Privacy, legality, and participant rights still apply; worker-provided classifications are not self-validating.
+
 ### Rare protection against destruction
 
 Alexandria's public data should remain openly accessible, even when withholding it might seem more efficient. A narrow exception is permitted when publishing specific information would credibly threaten the preservation of Alexandria's stored data. The relevant information may be withheld **temporarily** while a defense is sought. Once an effective defense is understood, publish both the threat and the defense. **If the threatening information is already publicly available elsewhere, Alexandria must stop hiding it on this ground**, even if the defense is incomplete. The exception must not become a means of censorship, exclusive ownership, or permanent control by Bartender or any other group.
@@ -136,6 +140,8 @@ Prefer retaining a generalized description of a private problem, the method atte
 Alexandria is a database and public memory, not a central intelligence or the engine that performs every analysis. [Bartender](../bartender/proposals.md) and other authorized tools can search, read, propose links, submit outcomes, and request restoration of archived records.
 
 **Independent admission:** Alexandria should accept genuinely distinct, authorized records from any permitted source without needing Bartender to first judge their usefulness. Validate permission, format, integrity, safety, and capacity, but do not use popularity or estimated utility as an admission requirement. An accepted record may remain unindexed or rarely retrieved; that does not make it disposable.
+
+**Division of computation:** Alexandria stores original records, summaries, links, versions, and approved indexes. Bartender's condensers, classifiers, and verifiers can perform expensive model-based processing and submit proposed derived records through controlled interfaces; Alexandria need not itself run an LLM to accept a new authorized original. Rebuildable derived indexes and caches may be maintained by service components without becoming duplicate authoritative copies. Generated summaries must retain links to their originals.
 
 **Shared-rule governance:** Individual Bartender workers cannot directly edit Alexandria's shared documents or policies. They may propose changes under the [tentative worker-consensus process](../bartender/proposals.md); sensitive proposals require authorized validation and deployment, and no vote grants permission to violate contributors' rights or Alexandria's preservation commitments.
 
@@ -167,5 +173,7 @@ Questions to investigate without changing the preservation-first principle:
 5. What defenses and evidence standards are appropriate before a temporary disclosure delay meant to prevent catastrophic data loss?
 6. When can a non-revealing lesson from private work be retained automatically with lawful authorization?
 7. If physical capacity becomes a real bottleneck, which preservation alternatives should be tried before any necessary loss?
+8. How should time-sensitive claims retain their historical versions while acquiring current validity and recheck status?
+9. How should hazardous or otherwise restricted information be presented without surrendering Alexandria's independent public-commons purpose?
 
 **Design rule:** Improve how efficiently information is stored, accessed, and understood. Do not confuse a low estimate of immediate usefulness with permission to forget it.
