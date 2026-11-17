@@ -63,6 +63,8 @@ Treat the exchange between a participating AI and Bartender as a **minimal hands
 
 If no result fits, the requesting AI can solve the task by other methods and contribute its solution, tests, and explanation of the gap. If a match *almost* works, link the original result to the new specialization or alternative and preserve why the first match failed.
 
+**Version-aware expansion:** A record or prompt can have multiple addressable revisions. If the latest compact version is insufficient, Bartender may return an older version, its source, or nearby linked concepts. These are distinct search directions: revision history versus semantic neighbors. Log which revision and expansion resolved the task. If older revisions repeatedly succeed where the current one fails, flag a possible compression or wording regression for Compressor/Verifier testing, not automatic rollback. See [AFR workflow prototype](workflowPrototype.md).
+
 **Design target:** Search should cost less than the expected work it saves. It is acceptable to skip search when the query is obviously too trivial or the projected search cost exceeds the likely benefit.
 
 ### Independent rediscovery as a deliberate experiment
