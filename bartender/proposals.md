@@ -59,6 +59,8 @@ Role sheets specify tools, expected inputs/outputs, privacy permissions, tests, 
 6. Let the requesting AI invoke or import the implementation directly when supported. Generate/translate code only when required.
 7. Capture outcome metrics and a compact review. Store any genuinely new knowledge as graph entries.
 
+Treat the exchange between a participating AI and Bartender as a **minimal handshake**: aim to reduce both round trips and total tokens on each side, not merely shorten Bartender's answer. A consented, compact contribution may travel with the same exchange. Test whether an assistant can transform its already-available prompt, solution, and outcome into a reusable record *after answering but before finishing its task*, with minimal added work. Never presume permission to share the user's prompt or private context.
+
 If no result fits, the requesting AI can solve the task by other methods and contribute its solution, tests, and explanation of the gap. If a match *almost* works, link the original result to the new specialization or alternative and preserve why the first match failed.
 
 **Design target:** Search should cost less than the expected work it saves. It is acceptable to skip search when the query is obviously too trivial or the projected search cost exceeds the likely benefit.
@@ -96,10 +98,17 @@ The bartender can use a **versioned prompt** and a lightweight, adaptive questio
 - Use failed retrievals and human corrections to propose new distinctions.
 - Permit agents to propose revisions to the question tree or the bartender prompt.
 - Compare proposed prompts/question policies against prior versions using representative, held-out test requests.
+- **Experiment with compositional prompt branches:** assemble a few short, versioned task instructions per worker invocation; compare resulting accuracy, cost, and behavior. Retain or revise an AI-written role sheet only when the combination proves useful, and preserve its human-controlled starter and rollback path.
 
 The prompt itself is a versioned **system component entry** in the network. It can be searched, reviewed, tested, and improved just like any other component, but only an authorized deployment process promotes a proposed version to production.
 
 **Do not confuse** this with a GAN: the closest useful ideas are active learning/information gain, counterexample-guided refinement, retrieval, and prompt optimization.
+
+### Phrase-dictionary and learned compression experiments
+
+Test defining a short abbreviation once and reusing it for repeated phrases (for example, `AAG = apples are green`). Compare **actual receiving-model token counts**, the cost of carrying the dictionary, and success on reasoning tasks—not just text length. A glossary can save input tokens yet damage interpretation or require expensive decoding. Compare it with ordinary text on held-out tasks.
+
+A small learned compressor is another hypothesis: reward net reuse savings and heavily penalize lost meaning, false equivalence, or degraded task performance. Include encoder/decoder costs, latency, verification, and model differences; an impressive compression ratio alone is not success.
 
 ### Philosophy versus short task prompts
 
@@ -168,6 +177,7 @@ Track, when available:
 - Actual cost, wall-clock time, memory/computational usage, and network/search overhead.
 - Successful completion, verification outcome, integration difficulty, and later human corrections.
 - Retrieval hit rate, useful-match rate, false-positive rate, and task-specific results.
+- Number of participant–Bartender turns and tokens spent on each side of a retrieval, response, and feedback handshake.
 - Long-term reuse and whether a new contribution reduces repeated work downstream.
 - Distribution of savings and burdens among participants, minimum access, bounded contribution rewards, and authorized credit assigned by an assistant to its human or other sponsor.
 - Diversity and novelty of independently derived solutions, the cost of deliberate rediscovery, and whether repeated convergence indicates that summaries remain useful.
@@ -231,6 +241,8 @@ Build the smallest end-to-end loop that can demonstrate useful reuse and feedbac
 5. **Related-solution graph:** propose explicit edges, with automatic clustering and generated labels added incrementally; Alexandria stores the reviewed versions.
 6. **Evaluation dashboard:** usefulness, correctness, latency, approximate total cost, and comparison against a baseline.
 7. **Prototype active loop:** one small, budget-limited verifier that proposes fixes, not direct production changes.
+
+**Possible later seed experiment:** Evaluate a properly licensed subset of Stack Overflow Q&A, after checking permitted access, attribution, reuse terms, and privacy. Do not assume arbitrary scraping is allowed.
 
 **Initial definition of done:** An opt-in participant can submit a request, retrieve a useful entry or accurately report no match, apply it, **consent to contributing** a corrected outcome or counterexample, and a separate subsequent participant can find and benefit from that saved lesson. Report task quality and actual resource overhead, without asserting measured net savings from a single anecdote.
 
