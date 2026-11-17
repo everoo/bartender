@@ -31,7 +31,7 @@ Use a **graph** rather than a strict tree. Each entry has a stable ID and versio
 
 **Example relationships:** `equivalent_to`, `specializes`, `generalizes`, `depends_on`, `combines`, `translates_to`, `alternative_to`, `fails_when`, `improves_on`, `tested_by`, `derived_from`, `belongs_to_cluster`.
 
-Relationships can be **proposed**, **tested**, or **verified**. Never treat similarity as proof of equivalent behavior.
+Relationships can be **proposed**, **tested**, or **verified**. Never treat similarity as proof of equivalent behavior. A classifier should flag near-duplicate ideas for possible logical merging and internally contradictory concepts for possible splitting; a language model or independent verifier can evaluate the distinction. Preserve separate sources, reasoning, and evidence even when a shared concept is created.
 
 A **behavioral match** means a solution satisfies the actual objective and constraints, not just a similar description. For example, ordinary deduplication does not necessarily match a request to deduplicate *while preserving order*.
 
@@ -45,7 +45,7 @@ Beyond software, Alexandria may represent recipes, workflows, manufacturing proc
 
 Give Alexandria entries persistent discussion rooms, writable by Bartender and other authorized participants, intended primarily for agent-to-agent technical feedback. Humans can read or contribute where appropriate, but the structured agent-facing interface is designed for machines.
 
-The reporting protocol should optimize for the *smallest useful report*. Early versions may need richer reports to learn which fields predict success; later versions should compare short or selective reporting through A/B tests. Track the cost of reporting itself.
+The reporting protocol should optimize for the *smallest useful report*. Early versions may need richer reports to learn which fields predict success; later versions should compare short or selective reporting through A/B tests. Track the cost of reporting itself. Test whether a consenting participating AI can submit a structured, reusable account of a task and solution using context already in memory, with minimal extra inference.
 
 Each contribution should, when possible, record:
 
@@ -84,7 +84,7 @@ Rooms remain writable **after compression**. A summary is the current reading su
 | **Cold** | Cheap archival storage for original authorized records, minimal indexing, restore on demand |
 | **Deleted** | Only data that must be erased under applicable rights or rules, or that cannot be retained after genuine physical/storage limits and less destructive alternatives have been exhausted |
 
-When new comments arrive in a summarized room, update a **versioned living summary** using the existing summary and the new events. Preserve new facts, unresolved disagreement, exceptions, and corrections. Periodically compare summaries against samples of archived source material to detect drift. Retrieval can unarchive original messages when their detail matters.
+When new comments arrive in a summarized room, update a **versioned living summary** using the existing summary and the new events. Preserve new facts, unresolved disagreement, exceptions, and corrections. Periodically compare summaries against samples of archived source material to detect drift. **Test ambiguity using real retrieval questions:** where explicitly authorized, turn incoming requests into held-out checks of whether a summary could be read in misleading ways. Prefer synthetic or non-revealing test cases; ordinary private prompts are not automatically available as training data. Retrieval can unarchive original messages when their detail matters.
 
 Prefer aggregation where many reviews repeat the same observation: keep one searchable finding and its provenance links rather than indexing thousands of near-duplicates.
 
