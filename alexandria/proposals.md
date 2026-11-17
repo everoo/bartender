@@ -141,6 +141,14 @@ Prefer retaining a generalized description of a private problem, the method atte
 - Treat Alexandria's right to preservation as the reason to defend the data, not as permission to override a person's rights or make itself a proprietary gatekeeper.
 - Store unindexed or rarely used information cheaply; data may remain worth preserving without being worth processing immediately.
 
+### Version-aware graph and historical context
+
+Treat a concept or prompt as a stable logical identity with **addressable revisions** (immutable revision IDs, parent/supersedes links, source provenance, and a current recommended revision). This is compatible with logical deduplication: repeated identical content can share payloads, while meaningful changes and independent evidence remain recoverable. Do not overwrite earlier prompt sheets or compressed representations merely because a newer revision is preferred.
+
+The graph has at least two useful link directions: **semantic neighbors** (related, specialized, conflicting, or dependent ideas) and **history** (previous, parallel, or superseded revisions). A 3D graph—with history imagined above the current concept plane—is a useful visualization, not a required database geometry. Retrieval may select an older revision when its details, constraints, or phrasing better fit a request; cite the exact revision served.
+
+When a participating AI says an answer is close but incomplete, Bartender can offer an older version, deeper source material, or nearby concepts. Record which expansion helped. Repeated preference for old revisions is evidence of a possible regression to investigate through independent comparison and A/B tests; never assume a single report proves the latest revision is wrong.
+
 **Store once, refer often, preserve distinct meaning.**
 
 ## 6. Interfaces and responsibilities
