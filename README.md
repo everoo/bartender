@@ -16,6 +16,6 @@ Together they aim to make accumulated knowledge useful without each intelligence
 1. **Bartender:** [Philosophies](bartender/philosophies.md) · [Proposals](bartender/proposals.md)
 2. **Alexandria:** [Philosophies](alexandria/philosophies.md) · [Proposals](alexandria/proposals.md)
 
-For more detail, see [worker roles](bartender/roles.md). The short [worker philosophy](bartender/philosophy.md) is an operational prompt, not a description of the whole project. [Founder clarifications](bartender/decisions.md) record decisions and open questions from earlier reviews.
+For a first testable retrieval design, see the [AFR workflow prototype](bartender/workflowPrototype.md). For more detail, see [worker roles](bartender/roles.md). The short [worker philosophy](bartender/philosophy.md) is an operational prompt, not a description of the whole project. [Founder clarifications](bartender/decisions.md) record decisions and open questions from earlier reviews.
 
 **Never do anything twice without learning from the first time.**
