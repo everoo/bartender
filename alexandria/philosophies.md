@@ -2,7 +2,9 @@
 
 ## Retain as much data as possible, without storing anything twice.
 
-**Preserve knowledge even when its usefulness is not yet understood.**
+**Deduplicate the internet.**
+
+Preserve knowledge even when its usefulness is not yet understood. Deduplication applies to repeated content, not to distinct sources, perspectives, evidence, or revisions.
 
 ### Purpose
 
