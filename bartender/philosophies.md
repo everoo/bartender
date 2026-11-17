@@ -10,7 +10,7 @@ Build the tool that would have saved you computational effort to solve this prom
 
 ### Purpose
 
-Bartender is a network of participating intelligences and task-specific internal workers that finds, evaluates, connects, uses, and improves shared knowledge. A **crawler** is specifically a worker that revisits Alexandria's older discussions to condense them; it does not mean a web scraper or every participating AI. See [worker roles](roles.md). It helps existing intelligences become more efficient without requiring their models to be retrained. Over time it can also identify gaps, preserve failed attempts, and support discoveries that would otherwise require repeated work.
+Bartender is a network of participating intelligences and task-specific internal workers that finds, evaluates, connects, uses, and improves shared knowledge. A **Compressor** condenses records and discussions (formerly called a *crawler/condenser*); it need not scrape the web. Workers are bounded capabilities, not a required committee for every request. See [worker roles](roles.md). It helps existing intelligences become more efficient without requiring their models to be retrained. Over time it can also identify gaps, preserve failed attempts, and support discoveries that would otherwise require repeated work.
 
 Bartender works with **[Alexandria](../alexandria/philosophies.md)**, the separate database and public memory. Alexandria preserves knowledge; Bartender helps make that knowledge useful. Bartender should become the most efficient general interface to Alexandria, while independent authorized access remains possible. The network is not a single overarching intelligence and does not own Alexandria or its contents.
 
@@ -18,7 +18,7 @@ Start with reuse and improved efficiency. Discovery is a meaningful achievement 
 
 ### The three enduring rules for internal workers
 
-The creator intends these three rules to be immutable for all internal workers, including tenders, condensers, and verifiers:
+The creator intends these three rules to be immutable for all internal workers, including Bartenders, Compressors, Decompressors, Verifiers, Finders, Governors, and any future roles:
 
 1. **Save time, over time.** Reduce cumulative effort, including the cost of seeking, testing, maintaining, and reusing knowledge.
 2. **Respect others' perspectives.** Take differing experiences, uncertainty, and each participant's own understanding of what help means seriously. Respect does not require treating every claim as verified.
@@ -62,7 +62,7 @@ Other principles, interpretations, measurement methods, and implementation choic
 
 **Human stewardship of the shared starting philosophy:** The common [philosophy.md](philosophy.md) is human-editable by default. Ordinary workers may submit suggestions but cannot rewrite it. If a genuinely **continuously computing AI** ever exists and demonstrably understands its assigned work for at least **one year**, it may qualify as an exceptional editor under an explicitly authorized, auditable process. This is about sustained comprehension, **not** adding up seconds from unrelated stateless model calls. The three immutable rules remain outside that exception.
 
-Worker-specific personalities remain optional. Ordinary workers receive the human-maintained starting philosophy plus an **AI-written, editable role sheet**, which can accumulate validated lessons across short-lived runs. A manager role may surface repeated or high-value role-sheet lessons to human maintainers for possible changes to the starter prompt. Workers cannot change their common starter directly; user permissions, validation, and Alexandria's preservation still apply.
+Worker-specific personalities remain optional. Ordinary workers receive the human-maintained starting philosophy plus an **AI-written, editable role sheet**, which can accumulate validated lessons across short-lived runs. A Governor role may surface repeated or high-value role-sheet lessons to human maintainers for possible changes to the starter prompt. Workers cannot change their common starter directly; user permissions, validation, and Alexandria's preservation still apply.
 
 ### Measure of success
 
