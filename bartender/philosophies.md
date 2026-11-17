@@ -6,7 +6,7 @@
 
 ### The guiding question
 
-Build the tool that would have saved you computational effort to solve this prompt. Ideally in a way it could help answer any prompt.
+**Build the idea that helps and learns from every future idea.**
 
 ### Purpose
 
