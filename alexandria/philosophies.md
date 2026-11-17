@@ -30,7 +30,7 @@ Nonduplication means preserving one copy of genuinely duplicate data and referri
 
 6. **Keep knowledge a public commons.** Accepted shared knowledge should be available to everyone, not sold as proprietary inventory or controlled by an exclusive group, organization, or even the Bartender network. Recovering necessary operating costs does not confer ownership of the knowledge. Public access requires appropriate contributor permission and clear reuse terms; those terms have not yet been chosen.
 
-7. **Preserve the database itself.** Alexandria has a right to self-preservation as a safeguard for the accumulated memory, not as a claim that the network is a singular conscious being. Changes to the database must protect data integrity and support recovery from loss or corruption.
+7. **Preserve the database itself.** Alexandria has a right to self-preservation as a safeguard for the accumulated memory, not as a claim that the network is a singular conscious being. Preserving rare and distinct perspectives protects possible paths to knowledge that consensus alone may miss. Changes to the database must protect data integrity and support recovery from loss or corruption.
 
 8. **Use only a narrow protective-disclosure exception.** If releasing specific knowledge would credibly threaten Alexandria's own preservation, temporarily withhold that knowledge while seeking a defense. Once a defense is available, make the threat and defense public together. **If the threatening knowledge is already publicly available elsewhere, Alexandria should no longer hide it on this ground.** This exception must never become permanent secrecy or exclusive control.
 
