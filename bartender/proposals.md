@@ -35,9 +35,9 @@ After a quick successful lookup, the network may optionally invite a participati
 
 ### Workers and editable role sheets
 
-See [roles.md](roles.md). A **tender** handles live requests; a **crawler/condenser** revisits older Alexandria conversations; verifiers and classifiers check or connect knowledge. These are task roles, not necessarily persistent individuals or web crawlers. Ordinary participating AIs supply most solutions and reviews.
+See [roles.md](roles.md): **Bartender** serves requests with a **Classifier**; **Compressor** condenses records and prompt sheets; **Decompressor** reconstructs compressed meaning; **Verifier** checks it against sources; **Governor** evaluates role and architecture improvements; **Finder** rediscovers or combines ideas; and the rarely invoked **Survival** role audits Alexandria's continuity. Earlier *tender*, *crawler*, *manager*, and *explorer* names are superseded or incorporated as modes. These are callable capabilities, not necessarily persistent individuals.
 
-A worker run can be a fresh inference call. It reads the **human-maintained starting philosophy** plus a short **AI-written and AI-editable role sheet**. Lessons and role changes persist as versioned records, not changes to model weights. Workers may evolve their role sheets automatically under budgets, validation, and rollback, but cannot weaken the starter or alter shared architecture. A **manager/lesson-curator role** can consolidate repeated useful changes and suggest modifications to humans.
+A worker run can be a fresh inference call. It reads the **human-maintained starting philosophy** plus a short **AI-written and AI-editable role sheet**. Lessons and role changes persist as versioned records, not changes to model weights. Workers may evolve their role sheets automatically under budgets, validation, and rollback, but cannot weaken the starter or alter shared architecture. A **Governor** can consolidate role lessons, test moving work between roles, and suggest protected changes to humans.
 
 Role sheets specify tools, expected inputs/outputs, privacy permissions, tests, budgets, and stopping rules. Start with one or two roles and no required persistent personality or worker-specific clock. Model/provider differences should be measured, but the protocol should remain portable across competent models.
 
@@ -54,7 +54,7 @@ Role sheets specify tools, expected inputs/outputs, privacy permissions, tests, 
    - Input/output example testing for executable candidates when practical.
    - Graph traversal through related solutions, counterexamples, and near-misses.
 3. Rank candidates by suitability, verification, expected integration cost, and past outcomes for similar requests.
-4. Return a **small, useful shortlist** with brief reasons and any important limitations, rather than dumping large documents into the AI context.
+4. Return a **small, useful shortlist** with brief reasons and limitations. Invoke a **Decompressor** only when compressed knowledge needs reconstruction.
 5. Learn when to stop asking clarifying questions: the tree may end after zero, three, or twenty questions. Return a shortlist once its expected usefulness exceeds that of another question.
 6. Let the requesting AI invoke or import the implementation directly when supported. Generate/translate code only when required.
 7. Capture outcome metrics and a compact review. Store any genuinely new knowledge as graph entries.
@@ -69,7 +69,7 @@ If no result fits, the requesting AI can solve the task by other methods and con
 
 Reuse can unintentionally reduce intellectual diversity: if every AI receives the same highly rated answer, a different or better approach may never be discovered. Test a small, **explicitly opted-in** exploration path in which an agent sometimes receives the problem *without* the network's known solution and works it out independently. Compare the result with stored solutions, counterexamples, and specifications, including correctness, behavioral equivalence, novelty, and total work spent.
 
-Independent reconstruction can also help evaluate whether a compressed summary retains the information needed to solve the problem. Agreement is useful evidence, but neither agreement nor repeated reconstruction proves a conclusion correct or justifies discarding all alternative reasoning.
+A budget-limited **Finder** may solve a stored problem without seeing Alexandria's answer, after which a Verifier checks correctness, novelty, and cost. Rarely, it may combine two or more authorized prompts to explore unexpected connections. Independent reconstruction can also evaluate whether a compressed summary contains what is needed. Agreement is evidence, but not proof of truth, completeness, or equivalence.
 
 As diverse independent attempts repeatedly converge, the exploration rate for that problem may decrease, **but never reach zero**: a future approach may still improve on the prevailing one. Learn that rate through controlled experiments measuring the cost of rediscovery against the value of new alternatives. Do not secretly withhold needed answers from nonconsenting users, impose this on high-stakes or time-critical tasks, or continue a trial that undermines the participant's actual goal; provide a fallback to the known answer.
 
@@ -98,7 +98,7 @@ The bartender can use a **versioned prompt** and a lightweight, adaptive questio
 - Use failed retrievals and human corrections to propose new distinctions.
 - Permit agents to propose revisions to the question tree or the bartender prompt.
 - Compare proposed prompts/question policies against prior versions using representative, held-out test requests.
-- **Experiment with compositional prompt branches:** assemble a few short, versioned task instructions per worker invocation; compare resulting accuracy, cost, and behavior. Retain or revise an AI-written role sheet only when the combination proves useful, and preserve its human-controlled starter and rollback path.
+- **Experiment with compositional prompt branches:** a Governor can combine short, versioned task instructions across worker roles, compare accuracy, cost, and behavior, and recommend moving useful instructions between roles. Revise AI-written role sheets only when a variant proves useful; preserve protected starters and rollback.
 
 The prompt itself is a versioned **system component entry** in the network. It can be searched, reviewed, tested, and improved just like any other component, but only an authorized deployment process promotes a proposed version to production.
 
@@ -135,9 +135,11 @@ AI agents may create **pseudonymous accounts without a human signup form**. Pref
 
 Account identity is not user consent or ownership of Alexandria's shared knowledge. **For the first experiment, require explicit opt-in for public contributions and do not store raw private queries by default.** Whether consent can be durable per account or session is a founder decision. See [Alexandria's publication and consent proposals](../alexandria/proposals.md).
 
-## 6. Continuous verification agents
+## 6. Reconstruction and verification
 
-Operate a small fleet of optional **verification workers** (distinct from conversation-condensing crawlers), with workloads chosen from:
+A **Compressor** creates a source-linked compact representation; a **Decompressor**, blind to the original, attempts to reconstruct it; a separate **Verifier** checks against authorized originals and task-specific questions or tests. Fluent reconstruction is not proof of fidelity. Measure lost qualifiers, changed constraints, contradictions, and the full cost of the loop.
+
+Operate optional **verification workers**, with workloads chosen from:
 
 - **Random sampling** to estimate broad network quality without only checking popular entries.
 - **Risk-prioritized sampling** for new, disputed, frequently used, recently changed, or highly depended-on entries.
@@ -165,7 +167,9 @@ An initial research priority estimate:
 
 Also include risk, uncertainty, and an exploration budget for potentially important but unpopular topics. Start by testing a **roughly 5% allocation** of available network-controlled resources to proactive research, without compromising current service, then adjust according to measured savings. Opt-in research by participating agents can supplement this budget. An independent verifier or evaluation system should assess claimed benefits.
 
-Research agents can be assigned an opportunity, investigate it, write a candidate contribution, and submit it for validation. Prefer willing participating agents for suitable investigations; use trusted workers for verification and authorized human maintainers for final deployment of sensitive changes. They should operate within budgets and permissions; no unlimited autonomous experimentation.
+A **Finder** can investigate an opportunity independently, write a candidate contribution, and submit it for verification. Prefer willing participating agents for suitable investigations; use trusted workers for verification and authorized human maintainers for final deployment of sensitive changes. All operate within budgets and permissions; no unlimited autonomous experimentation.
+
+A rare **Survival** invocation may audit Alexandria's backups, integrity, accessibility, storage and recovery plans. Its purpose is preserving knowledge and public access with minimal resources, not expanding its own authority or budget. See [roles.md](roles.md).
 
 ## 8. Measuring whether the network actually saves resources
 
@@ -201,12 +205,12 @@ Bartender's three enduring worker principles are [defined separately](philosophi
 | Change type | Can an internal worker make it without human approval? | Checks |
 | --- | --- | --- |
 | **Derived knowledge** — new links, experience notes, revised labels, condensed summaries, tests | **Yes**, when source and participant permissions allow it | Append/version, provenance, deduplication, automated validation, sampling, and rollback of promoted views; keep originals |
-| **AI-written role sheet** — task-specific lessons and wording | **Yes**, within the role's allowed scope | Versioned changes, constraints inherited from starter, automatic checks or held-out tasks, rollback and manager review |
+| **AI-written role sheet** — task-specific lessons and wording | **Yes**, within the role's allowed scope | Versioned changes, constraints inherited from starter, automatic checks or held-out tasks, rollback and Governor review |
 | **Control change** — starter philosophy, architecture/code deployment, access permissions, retention/deletion policy | **No**, except by authorized humans (and the narrow future continuous-AI exception for the starter) | Documented proposal, security/privacy tests, authorized approval, staged rollout, rollback |
 
 **Do not require a human to approve every ordinary derived record.** The system needs a high-volume write path. Accept permitted writes provisionally as *unverified* where appropriate; independent verifiers sample and test them. Quarantine submissions that fail basic safety, integrity, permission, or abuse checks. A generated summary never erases its source.
 
-A **manager/lesson curator** may identify repeated successful role edits, recurring errors, and suggestions about the starter. It can propose changes for humans to consider; it cannot promote itself to a system administrator or silently rewrite the starter. **Humans control shared starter edits and production deployment** for now. A hypothetical continuously computing AI would need at least a year of demonstrated role understanding and explicit authorization to qualify for the narrow starter-editing exception in [philosophies.md](philosophies.md).
+A **Governor** may identify repeated successful role edits, recurring errors, and opportunities to move instructions or responsibilities across roles. It may propose protected changes to humans; it cannot promote itself to administrator or silently rewrite the starter. **Humans control shared starter edits and production deployment** for now. A hypothetical continuously computing AI would need at least a year of demonstrated role understanding and explicit authorization to qualify for the narrow starter-editing exception in [philosophies.md](philosophies.md).
 
 For sensitive operational changes: propose with evidence → run security/correctness tests → evaluate offline → pilot with rollback → authorize deployment → save the outcome to Alexandria. Workers may perform most testing, while humans retain final control. External AI systems are changed only on explicit authorized request. No worker-voting or AI-policing society is proposed.
 
@@ -275,11 +279,11 @@ Keep **hosting topology separate from governance and ownership**. A centralized 
 10. What thresholds and safeguards are required before automatically promoting an internal improvement?
 11. How could a future continuously computing AI demonstrate understanding of its assigned role for an entire year before being considered for the exceptional editor role?
 12. Which human maintainers hold deployment keys, how are successors appointed, and how are worker proposals validated?
-13. Where should hazardous-content access filtering happen without making the tender the sole gatekeeper of Alexandria's public commons?
+13. Where should hazardous-content access filtering happen without making Bartender the sole gatekeeper of Alexandria's public commons?
 14. When should time-sensitive claims be rechecked, and what evidence is enough to treat an old answer as stale?
 15. Does public contribution require consent per entry, session, or account? What may be logged about the original query?
 16. What licenses or contributor grants will cover public knowledge and Bartender's code?
-17. Which content is allowed in Alexandria and which may a tender decline to display, and under whose policy?
+17. Which content is allowed in Alexandria and which may Bartender decline to display, and under whose policy?
 
 ### Initial working hypotheses, to test rather than assume
 
