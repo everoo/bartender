@@ -235,6 +235,8 @@ Ideas discussed:
 
 ## 11. Suggested minimum viable implementation
 
+See [workflowPrototype.md](workflowPrototype.md) for the proposed participant/Bartender handshake, fuzzy-graph routing, stopping rules, and small A/B experiment.
+
 Build the smallest end-to-end loop that can demonstrate useful reuse and feedback. This is a **first experiment in the combined Alexandria + Bartender system**, not a decision to limit the finished project to executable functions. Seed Alexandria with a handful of authorized records (potentially including this project's own documents, change history, and reusable tool lessons) so the first worker has something to retrieve:
 
 
